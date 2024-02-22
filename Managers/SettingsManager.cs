@@ -1,6 +1,4 @@
 ﻿using MelonLoader;
-using UnityEngine;
-using static SelectiveEffects.Managers.SettingsManager;
 
 namespace SelectiveEffects.Managers
 {
