@@ -10,17 +10,24 @@ namespace SelectiveEffects.Managers
         // Main Category
         //--------------------------------------------------------------------+
         public static bool DisableAllEffects => MainCategory._disableAllEffects.Value;
+        public static bool Enabled
+        {
+            get => MainCategory._enabled.Value;
+            set => MainCategory._enabled.Value = value;
+        }
 
         internal class MainCategory
         {
             public static MelonPreferences_Entry<bool> _disableAllEffects;
+            public static MelonPreferences_Entry<bool> _enabled;
 
             public static void Init()
             {
                 MelonPreferences_Category mainCategory = MelonPreferences.CreateCategory("Main");
                 mainCategory.SetFilePath(SettingsPath);
 
-                _disableAllEffects = mainCategory.CreateEntry<bool>("DisableAllEfects", true, description: "Takes precedence to the following options");
+                _enabled = mainCategory.CreateEntry<bool>("Enabled", true, description: "Enable or disable the mod!");
+                _disableAllEffects = mainCategory.CreateEntry<bool>("DisableAllEfects", true, description: "Takes precedence to the following options.");
             }
 
         }
@@ -111,7 +118,7 @@ namespace SelectiveEffects.Managers
 
                 _disableBossFx = miscCategory.CreateEntry<bool>("DisableBossFx", false);
                 _disableDustFx = miscCategory.CreateEntry<bool>("DisableDustFx", false);
-                _disableHurtFx = miscCategory.CreateEntry<bool>("DisableHurtFx", false, description: "Disable hp loss text-");
+                _disableHurtFx = miscCategory.CreateEntry<bool>("DisableHurtFx", false, description: "Disable hp loss text.");
             }
         }
 

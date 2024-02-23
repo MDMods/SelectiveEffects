@@ -11,6 +11,7 @@ namespace SelectiveEffects.Patches
         [HarmonyPatch(nameof(BaseEnemyObjectController.OnControllerAttacked))]
         public static void Postfix(BaseEnemyObjectController __instance)
         {
+            if (!SettingsManager.Enabled) return;
 
             if (SettingsManager.DisableAllEffects || SettingsManager.DisableHitEnemy)
             {
@@ -21,7 +22,7 @@ namespace SelectiveEffects.Patches
             if (SettingsManager.DisableHitEffects)
             {
                 GameObject out_fx = __instance.transform.FindChild("out_fx")?.gameObject;
-                if (out_fx) out_fx.SetActive(false);
+                if (out_fx) UnityEngine.Object.Destroy(out_fx);
             }
 
             if (!SettingsManager.DisableHitDissapearAnimations) return;

@@ -9,6 +9,8 @@ namespace SelectiveEffects.Patches
     {
         public static void Postfix(AttackEffectManager __instance)
         {
+            if (!SettingsManager.Enabled) return;
+
             if (!SettingsManager.DisableHitEffects) return;
             __instance.m_PlayResult.SetActive(false);
         }

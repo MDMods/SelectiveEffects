@@ -12,12 +12,16 @@ namespace SelectiveEffects.Patches
 
         public static bool Prefix(ref GameObject __result)
         {
+            if (!SettingsManager.Enabled) return true;
+
             __result = EmptyObject;
             return !SettingsManager.DisableAllEffects;
         }
 
         public static void Postfix(Effect __instance, ref GameObject __result)
         {
+            if (!SettingsManager.Enabled) return;
+
             if (SettingsManager.DisableAllEffects || !EffectsDisablerManager.AnyEffect) return;
 
             string fxName = __instance.uid;
