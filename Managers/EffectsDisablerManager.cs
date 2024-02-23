@@ -12,6 +12,13 @@
             if (DisableAllEffects) return;
             effectsDisablerList = new();
 
+            if (!DisableJudgement)
+            {
+                if (DisablePerfects) effectsDisablerList.Add(new Perfects());
+                if (DisableGreats) effectsDisablerList.Add(new Greats());
+                if (DisablePass) effectsDisablerList.Add(new Pass());
+            }
+
             if (DisableGirlFxAtk) effectsDisablerList.Add(new GirlFxAtk());
             if (DisablePressFx) effectsDisablerList.Add(new PressFx());
             if (DisableMusicNotesFx)
@@ -25,6 +32,7 @@
                 effectsDisablerList.Add(new TxtHp());
             }
             if (DisableBossFx) effectsDisablerList.Add(new BossFx());
+            if (DisableElfinFx) effectsDisablerList.Add(new ElfinFx());
             if (DisableDustFx) effectsDisablerList.Add(new DustFx());
             if (DisableHurtFx) effectsDisablerList.Add(new HurtFx());
 
@@ -35,6 +43,30 @@
     internal abstract class EffectsCondition
     {
         public abstract bool Condition(string s);
+    }
+
+    internal class Perfects : EffectsCondition
+    {
+        public override bool Condition(string s)
+        {
+            return s.Contains("Perfect");
+        }
+    }
+
+    internal class Greats : EffectsCondition
+    {
+        public override bool Condition(string s)
+        {
+            return s.Contains("Great");
+        }
+    }
+
+    internal class Pass : EffectsCondition
+    {
+        public override bool Condition(string s)
+        {
+            return s.Contains("Pass");
+        }
     }
 
     internal class GirlFxAtk : EffectsCondition
@@ -91,7 +123,14 @@
         {
             return s.Contains("boss");
         }
+    }
 
+    internal class ElfinFx : EffectsCondition
+    {
+        public override bool Condition(string s)
+        {
+            return s.Contains("elfin");
+        }
     }
 
     internal class DustFx : EffectsCondition

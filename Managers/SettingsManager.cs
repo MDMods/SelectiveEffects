@@ -37,11 +37,17 @@ namespace SelectiveEffects.Managers
         //--------------------------------------------------------------------+
         public static bool DisableJudgement => JudgementCategory._disableJudgement.Value;
         public static bool MakeJudgementSmaller => JudgementCategory._makeJudgementSmaller.Value;
+        public static bool DisablePerfects => JudgementCategory._disablePerfects.Value;
+        public static bool DisableGreats => JudgementCategory._disableGreats.Value;
+        public static bool DisablePass => JudgementCategory._disablePass.Value;
 
         internal class JudgementCategory
         {
             public static MelonPreferences_Entry<bool> _disableJudgement;
             public static MelonPreferences_Entry<bool> _makeJudgementSmaller;
+            public static MelonPreferences_Entry<bool> _disablePerfects;
+            public static MelonPreferences_Entry<bool> _disableGreats;
+            public static MelonPreferences_Entry<bool> _disablePass;
 
             public static void Init()
             {
@@ -50,6 +56,9 @@ namespace SelectiveEffects.Managers
 
                 _disableJudgement = judgementCategory.CreateEntry<bool>("DisableJudgement", false);
                 _makeJudgementSmaller = judgementCategory.CreateEntry<bool>("MakeJudgementSmaller", false, description: "DisableJudgement takes precedence.");
+                _disablePerfects = judgementCategory.CreateEntry<bool>("DisablePerfects", false);
+                _disableGreats = judgementCategory.CreateEntry<bool>("DisableGreats", false);
+                _disablePass = judgementCategory.CreateEntry<bool>("DisablePass", false);
             }
         }
 
@@ -60,6 +69,9 @@ namespace SelectiveEffects.Managers
         public static bool DisableHitEffects => HitCategory._disableHitEffects.Value;
         public static bool DisableGirlFxAtk => HitCategory._disableGirlFxAtk.Value;
         public static bool DisablePressFx => HitCategory._disablePressFx.Value;
+
+        public static bool DisableHitEnemy => DisableHitDissapearAnimations
+            && (DisableHitEffects || DisableGirlFxAtk);
 
         internal class HitCategory
         {
@@ -101,15 +113,20 @@ namespace SelectiveEffects.Managers
             }
         }
 
+        //--------------------------------------------------------------------+
+        // Misc Category
+        //--------------------------------------------------------------------+
         public static bool DisableBossFx => MiscCategory._disableBossFx.Value;
         public static bool DisableDustFx => MiscCategory._disableDustFx.Value;
         public static bool DisableHurtFx => MiscCategory._disableHurtFx.Value;
+        public static bool DisableElfinFx => MiscCategory._disableElfinFx.Value;
 
         internal class MiscCategory
         {
             public static MelonPreferences_Entry<bool> _disableBossFx;
             public static MelonPreferences_Entry<bool> _disableDustFx;
             public static MelonPreferences_Entry<bool> _disableHurtFx;
+            public static MelonPreferences_Entry<bool> _disableElfinFx;
 
             public static void Init()
             {
@@ -117,12 +134,11 @@ namespace SelectiveEffects.Managers
                 miscCategory.SetFilePath(SettingsPath);
 
                 _disableBossFx = miscCategory.CreateEntry<bool>("DisableBossFx", false);
+                _disableElfinFx = miscCategory.CreateEntry<bool>("DisableElfinFx", false);
                 _disableDustFx = miscCategory.CreateEntry<bool>("DisableDustFx", false);
                 _disableHurtFx = miscCategory.CreateEntry<bool>("DisableHurtFx", false, description: "Disable hp loss text.");
             }
         }
-
-        public static bool DisableHitEnemy => DisableHitDissapearAnimations && DisableHitEffects;
 
         internal static void Load()
         {

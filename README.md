@@ -12,7 +12,10 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 * `DisableAllEfects` uses a general method to disable all effects in battle.
 ### Judgement
 * `DisableJudgement` disables the judgements (including early/late).
-* `MakeJudgementSmaller` if the judgements are available, it makes them 25%~ smaller.
+* `MakeJudgementSmaller` if the judgements are available, it makes them ~25% smaller.
+* `DisablePerfects` disables the perfect judgement.
+* `DisableGreats` disables the great judgement.
+* `DisablePass` disables the pass judgement.
 ### Hit
 * `DisableHitDissapearAnimation` disables the enemies animation when they have been hit and makes them disappear inmmeadiatly.
 * `DisableHitEffects` disables the hit effects and particles.
@@ -25,6 +28,7 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 * `DisableBossFx` disables some effects the boss has when deploying enemies.
 * `DisableDustFx` disables the dust effect when the character falls to the ground.
 * `DisableHurtFx` disables the text that appear when the character is hurt.
+* `DisableElfinFx` disables elfin effects.
 
 It is prefered to use the `DisableAllEfects` option instead of the individual options.
 
