@@ -10,14 +10,19 @@ namespace SelectiveEffects.Patches
     {
         internal static GameObject EmptyObject = new("EmptyObject");
 
+        [HarmonyPrefix]
+        [HarmonyPriority(Priority.VeryHigh)]
         public static bool Prefix(ref GameObject __result)
         {
             if (!SettingsManager.Enabled) return true;
 
+            if (!SettingsManager.DisableAllEffects) return true;
+
             __result = EmptyObject;
-            return !SettingsManager.DisableAllEffects;
+            return false;
         }
 
+        [HarmonyPostfix]
         public static void Postfix(Effect __instance, ref GameObject __result)
         {
             if (!SettingsManager.Enabled) return;
@@ -25,9 +30,9 @@ namespace SelectiveEffects.Patches
             if (SettingsManager.DisableAllEffects || !EffectsDisablerManager.AnyEffect) return;
 
             string fxName = __instance.uid;
-            foreach (EffectsCondition x in EffectsDisablerManager.effectsDisablerList)
+            foreach (EffectsCondition effecObject in EffectsDisablerManager.effectsDisablerList)
             {
-                if (!x.Condition(fxName)) continue;
+                if (!effecObject.Condition(fxName)) continue;
 
                 __result.SetActive(false);
                 return;
