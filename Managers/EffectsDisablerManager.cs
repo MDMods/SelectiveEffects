@@ -2,9 +2,18 @@
 {
     using static SettingsManager;
 
+    /*
+    [RegisterTypeInIl2Cpp]
+    public class DisableEffectComponent : MonoBehaviour
+    {
+        public DisableEffectComponent(IntPtr ptr) : base(ptr) { }
+    }
+    */
+
     internal static class EffectsDisablerManager
     {
         public static List<EffectsCondition> effectsDisablerList;
+        public static HashSet<string> effectsDisabledUids = new();
         public static bool AnyEffect = false;
 
         public static void Init()
@@ -43,6 +52,29 @@
     internal abstract class EffectsCondition
     {
         public abstract bool Condition(string s);
+
+        public virtual void Action(string s)
+        {
+            EffectsDisablerManager.effectsDisabledUids.Add(s);
+            //effectPrefab.AddComponent<DisableEffectComponent>();
+        }
+
+        public bool CheckDo(string uid)
+        {
+            if (!Condition(uid)) return false;
+
+            Action(uid);
+            return true;
+        }
+    }
+
+    // Unused
+    internal class JudgementSize : EffectsCondition
+    {
+        public override bool Condition(string s)
+        {
+            return s.Contains("Score");
+        }
     }
 
     internal class Perfects : EffectsCondition

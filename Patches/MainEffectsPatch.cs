@@ -5,31 +5,34 @@ using UnityEngine;
 
 namespace SelectiveEffects.Patches
 {
-    [HarmonyPatch(typeof(Effect), nameof(Effect.CreateInstance))]
-    internal class MainEffectsPatch
+    [HarmonyPatch(typeof(Effect))]
+    internal static class MainEffectsPatch
     {
-        public static void Postfix(Effect __instance, ref GameObject __result)
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(Effect.Init))]
+        public static void ModifyPrefabs(Effect __instance)
+        {
+            if (!Main.IsGameMain) return;
+
+            if (SettingsManager.DisableAllEffects) return;
+
+            foreach (EffectsCondition effecObject in EffectsDisablerManager.effectsDisablerList)
+            {
+                if (effecObject.CheckDo(__instance.uid)) return;
+            }
+        }
+
+
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(Effect.CreateInstance))]
+        public static void DisableEffects(Effect __instance, ref GameObject __result)
         {
             if (!SettingsManager.Enabled) return;
 
-            
-            if (SettingsManager.DisableAllEffects)
-            {
-                __result.SetActive(false);
-                return;
-            }
-            
-
-            if (SettingsManager.DisableAllEffects || !EffectsDisablerManager.AnyEffect) return;
-
-            string fxName = __instance.uid;
-            foreach (EffectsCondition effecObject in EffectsDisablerManager.effectsDisablerList)
-            {
-                if (!effecObject.Condition(fxName)) continue;
-
-                __result.SetActive(false);
-                return;
-            }
+            if (!SettingsManager.DisableAllEffects
+                && !EffectsDisablerManager.effectsDisabledUids.Contains(__instance.uid)
+                ) return;
+            __result.SetActive(false);
         }
     }
 }
