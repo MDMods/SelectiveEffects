@@ -35,7 +35,8 @@ namespace SelectiveEffects.Managers
         //--------------------------------------------------------------------+
         // Judgement Category
         //--------------------------------------------------------------------+
-        public static bool DisableJudgement => JudgementCategory._disableJudgement.Value;
+        public static bool DisableJudgement => JudgementCategory._disableJudgement.Value
+            || (DisablePerfects && DisableGreats && DisablePass);
         public static bool MakeJudgementSmaller => JudgementCategory._makeJudgementSmaller.Value;
         public static bool DisablePerfects => JudgementCategory._disablePerfects.Value;
         public static bool DisableGreats => JudgementCategory._disableGreats.Value;
