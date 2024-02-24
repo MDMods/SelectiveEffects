@@ -1,10 +1,11 @@
 ﻿using HarmonyLib;
-using Il2CppAssets.Scripts.PeroTools.Nice.Events;
+using Il2CppAssets.Scripts.PeroTools.GeneralLocalization;
 using Il2CppAssets.Scripts.UI.Panels;
 using SelectiveEffects.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Nice = Il2CppAssets.Scripts.PeroTools.Nice;
 
 namespace SelectiveEffects.Patches
 {
@@ -46,11 +47,14 @@ namespace SelectiveEffects.Patches
             Image checkMark = EffectsToggle.transform.Find("Background").GetChild(0).GetComponent<Image>();
             checkMark.color = new(103 / 255f, 93 / 255f, 130 / 255f);
 
-            EffectsToggle.transform.position = new Vector3(-6.8f, -4.95f, 100f);
-            EffectsToggle.GetComponent<OnToggle>().enabled = false;
-            EffectsToggle.GetComponent<OnToggleOn>().enabled = false;
-            EffectsToggle.GetComponent<OnActivate>().enabled = false;
 
+            UnityEngine.Object.Destroy(txt.GetComponent<Localization>());
+            UnityEngine.Object.Destroy(EffectsToggle.GetComponent<Nice.Events.OnToggle>());
+            UnityEngine.Object.Destroy(EffectsToggle.GetComponent<Nice.Events.OnToggleOn>());
+            UnityEngine.Object.Destroy(EffectsToggle.GetComponent<Nice.Events.OnActivate>());
+            UnityEngine.Object.Destroy(EffectsToggle.GetComponent<Nice.Variables.VariableBehaviour>());
+
+            EffectsToggle.transform.position = new Vector3(-6.8f, -4.95f, 100f);
             EffectsToggle.transform.SetParent(__instance.transform.Find("Panels").Find("PnlOption").Find("TxtVersion"));
         }
     }
