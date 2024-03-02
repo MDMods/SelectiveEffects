@@ -4,7 +4,7 @@ namespace SelectiveEffects.Managers
 {
     internal static class SettingsManager
     {
-        internal static string SettingsPath = "UserData/SelectiveEffects.cfg";
+        private static readonly string SettingsPath = "UserData/SelectiveEffects.cfg";
 
         //--------------------------------------------------------------------+
         // Main Category
@@ -16,7 +16,7 @@ namespace SelectiveEffects.Managers
             set => MainCategory._enabled.Value = value;
         }
 
-        internal static class MainCategory
+        private static class MainCategory
         {
             public static MelonPreferences_Entry<bool> _disableAllEffects;
             public static MelonPreferences_Entry<bool> _enabled;
@@ -35,14 +35,14 @@ namespace SelectiveEffects.Managers
         //--------------------------------------------------------------------+
         // Fever Category
         //--------------------------------------------------------------------+
-        public static bool DisableFever => FeverCategory._disableFever.Value
+        internal static bool DisableFever => FeverCategory._disableFever.Value
             || (DisableBG && DisableStars && DisableTransition);
         public static bool DisableBG => FeverCategory._disableBG.Value;
         public static bool DisableStars => FeverCategory._disableStars.Value;
         public static bool DisableTransition => FeverCategory._disableTransition.Value;
 
 
-        internal static class FeverCategory
+        private static class FeverCategory
         {
             public static MelonPreferences_Entry<bool> _disableFever;
             public static MelonPreferences_Entry<bool> _disableBG;
@@ -72,7 +72,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableGreats => JudgementCategory._disableGreats.Value;
         public static bool DisablePass => JudgementCategory._disablePass.Value;
 
-        internal static class JudgementCategory
+        private static class JudgementCategory
         {
             public static MelonPreferences_Entry<bool> _disableJudgement;
             public static MelonPreferences_Entry<bool> _makeJudgementSmaller;
@@ -104,7 +104,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableHitEnemy => DisableHitDissapearAnimations
             && (DisableHitEffects || DisableGirlFxAtk);
 
-        internal static class HitCategory
+        private static class HitCategory
         {
             public static MelonPreferences_Entry<bool> _disableHitDissapearAnimations;
             public static MelonPreferences_Entry<bool> _disableHitEffects;
@@ -129,7 +129,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableMusicNotesFx => MusicHeartsCategory._disableMusicNotesFx.Value;
         public static bool DisableHeartsFx => MusicHeartsCategory._disableHeartsFx.Value;
 
-        internal static class MusicHeartsCategory
+        private static class MusicHeartsCategory
         {
             public static MelonPreferences_Entry<bool> _disableMusicNotesFx;
             public static MelonPreferences_Entry<bool> _disableHeartsFx;
@@ -152,7 +152,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableHurtFx => MiscCategory._disableHurtFx.Value;
         public static bool DisableElfinFx => MiscCategory._disableElfinFx.Value;
 
-        internal static class MiscCategory
+        private static class MiscCategory
         {
             public static MelonPreferences_Entry<bool> _disableBossFx;
             public static MelonPreferences_Entry<bool> _disableDustFx;
