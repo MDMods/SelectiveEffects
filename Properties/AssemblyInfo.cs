@@ -2,7 +2,7 @@
 using System.Reflection;
 using Main = SelectiveEffects.Main;
 
-[assembly: MelonInfo(typeof(Main), "SelectiveEffects", "1.2.0", "Asgragrt")]
+[assembly: MelonInfo(typeof(Main), "SelectiveEffects", "1.2.1", "Asgragrt")]
 [assembly: MelonGame("PeroPeroGames", "MuseDash")]
 [assembly: MelonColor(255, 241, 196, 15)]
 
