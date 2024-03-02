@@ -33,6 +33,36 @@ namespace SelectiveEffects.Managers
         }
 
         //--------------------------------------------------------------------+
+        // Fever Category
+        //--------------------------------------------------------------------+
+        public static bool DisableFever => FeverCategory._disableFever.Value
+            || (DisableBG && DisableStars && DisableTransition);
+        public static bool DisableBG => FeverCategory._disableBG.Value;
+        public static bool DisableStars => FeverCategory._disableStars.Value;
+        public static bool DisableTransition => FeverCategory._disableTransition.Value;
+
+
+        internal static class FeverCategory
+        {
+            public static MelonPreferences_Entry<bool> _disableFever;
+            public static MelonPreferences_Entry<bool> _disableBG;
+            public static MelonPreferences_Entry<bool> _disableStars;
+            public static MelonPreferences_Entry<bool> _disableTransition;
+
+
+            public static void Init()
+            {
+                MelonPreferences_Category feverCategory = MelonPreferences.CreateCategory("Fever");
+                feverCategory.SetFilePath(SettingsPath);
+
+                _disableFever = feverCategory.CreateEntry<bool>("DisableFever", false);
+                _disableBG = feverCategory.CreateEntry<bool>("DisableBackground", false);
+                _disableStars = feverCategory.CreateEntry<bool>("DisableStars", false);
+                _disableTransition = feverCategory.CreateEntry<bool>("DisableTransition", false);
+            }
+        }
+
+        //--------------------------------------------------------------------+
         // Judgement Category
         //--------------------------------------------------------------------+
         public static bool DisableJudgement => JudgementCategory._disableJudgement.Value
@@ -144,6 +174,7 @@ namespace SelectiveEffects.Managers
         internal static void Load()
         {
             MainCategory.Init();
+            FeverCategory.Init();
             JudgementCategory.Init();
             HitCategory.Init();
             MusicHeartsCategory.Init();

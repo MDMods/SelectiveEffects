@@ -10,6 +10,11 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 ### Main
 * `Enabled` stores the last status of the toggle.
 * `DisableAllEfects` uses a general method to disable all effects in battle.
+### Fever
+* `DisableFever` disables fever's background and stars.
+* `DisableBackground` disables the fever background (keeping the stars and the ending transition). **If only this fever option is enabled it behaves exactly like _BALLCOCK_ mod**.
+* `DisableStars` disables the fever stars.
+* `DisableTransition` disables the ending transition. **Looks better with `DisableBackground`**.
 ### Judgement
 * `DisableJudgement` disables the judgements (including early/late).
 * `MakeJudgementSmaller` if the judgements are available, it makes them ~25% smaller.
