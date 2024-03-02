@@ -2,7 +2,7 @@
 
 namespace SelectiveEffects.Managers
 {
-    internal class SettingsManager
+    internal static class SettingsManager
     {
         internal static string SettingsPath = "UserData/SelectiveEffects.cfg";
 
@@ -16,7 +16,7 @@ namespace SelectiveEffects.Managers
             set => MainCategory._enabled.Value = value;
         }
 
-        internal class MainCategory
+        internal static class MainCategory
         {
             public static MelonPreferences_Entry<bool> _disableAllEffects;
             public static MelonPreferences_Entry<bool> _enabled;
@@ -42,7 +42,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableGreats => JudgementCategory._disableGreats.Value;
         public static bool DisablePass => JudgementCategory._disablePass.Value;
 
-        internal class JudgementCategory
+        internal static class JudgementCategory
         {
             public static MelonPreferences_Entry<bool> _disableJudgement;
             public static MelonPreferences_Entry<bool> _makeJudgementSmaller;
@@ -74,7 +74,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableHitEnemy => DisableHitDissapearAnimations
             && (DisableHitEffects || DisableGirlFxAtk);
 
-        internal class HitCategory
+        internal static class HitCategory
         {
             public static MelonPreferences_Entry<bool> _disableHitDissapearAnimations;
             public static MelonPreferences_Entry<bool> _disableHitEffects;
@@ -99,7 +99,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableMusicNotesFx => MusicHeartsCategory._disableMusicNotesFx.Value;
         public static bool DisableHeartsFx => MusicHeartsCategory._disableHeartsFx.Value;
 
-        internal class MusicHeartsCategory
+        internal static class MusicHeartsCategory
         {
             public static MelonPreferences_Entry<bool> _disableMusicNotesFx;
             public static MelonPreferences_Entry<bool> _disableHeartsFx;
@@ -122,7 +122,7 @@ namespace SelectiveEffects.Managers
         public static bool DisableHurtFx => MiscCategory._disableHurtFx.Value;
         public static bool DisableElfinFx => MiscCategory._disableElfinFx.Value;
 
-        internal class MiscCategory
+        internal static class MiscCategory
         {
             public static MelonPreferences_Entry<bool> _disableBossFx;
             public static MelonPreferences_Entry<bool> _disableDustFx;
