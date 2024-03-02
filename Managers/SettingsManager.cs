@@ -24,7 +24,7 @@ namespace SelectiveEffects.Managers
             public static void Init()
             {
                 MelonPreferences_Category mainCategory = MelonPreferences.CreateCategory("Main");
-                mainCategory.SetFilePath(SettingsPath);
+                mainCategory.SetFilePath(SettingsPath, true, false);
 
                 _enabled = mainCategory.CreateEntry<bool>("Enabled", true, description: "Enable or disable the mod!");
                 _disableAllEffects = mainCategory.CreateEntry<bool>("DisableAllEfects", true, description: "Takes precedence to the following options.");
@@ -53,7 +53,7 @@ namespace SelectiveEffects.Managers
             public static void Init()
             {
                 MelonPreferences_Category feverCategory = MelonPreferences.CreateCategory("Fever");
-                feverCategory.SetFilePath(SettingsPath);
+                feverCategory.SetFilePath(SettingsPath, true, false);
 
                 _disableFever = feverCategory.CreateEntry<bool>("DisableFever", false);
                 _disableBG = feverCategory.CreateEntry<bool>("DisableBackground", false);
@@ -83,7 +83,7 @@ namespace SelectiveEffects.Managers
             public static void Init()
             {
                 MelonPreferences_Category judgementCategory = MelonPreferences.CreateCategory("Judgement");
-                judgementCategory.SetFilePath(SettingsPath);
+                judgementCategory.SetFilePath(SettingsPath, true, false);
 
                 _disableJudgement = judgementCategory.CreateEntry<bool>("DisableJudgement", false);
                 _makeJudgementSmaller = judgementCategory.CreateEntry<bool>("MakeJudgementSmaller", false, description: "DisableJudgement takes precedence.");
@@ -114,7 +114,7 @@ namespace SelectiveEffects.Managers
             public static void Init()
             {
                 MelonPreferences_Category hitCategory = MelonPreferences.CreateCategory("Hit");
-                hitCategory.SetFilePath(SettingsPath);
+                hitCategory.SetFilePath(SettingsPath, true, false);
 
                 _disableHitDissapearAnimations = hitCategory.CreateEntry<bool>("DisableHitDissapearAnimations", false, description: "Hit enemies disappear immeadiatly.");
                 _disableHitEffects = hitCategory.CreateEntry<bool>("DisableHitEffects", false);
@@ -137,7 +137,7 @@ namespace SelectiveEffects.Managers
             public static void Init()
             {
                 MelonPreferences_Category musicHeartsCategory = MelonPreferences.CreateCategory("MusicHearts");
-                musicHeartsCategory.SetFilePath(SettingsPath);
+                musicHeartsCategory.SetFilePath(SettingsPath, true, false);
 
                 _disableMusicNotesFx = musicHeartsCategory.CreateEntry<bool>("DisableMusicNotesFx", false, description: "Disable music notes points text.");
                 _disableHeartsFx = musicHeartsCategory.CreateEntry<bool>("DisablHeartsFx", false, description: "Disable hearts health gain text.");
@@ -162,7 +162,7 @@ namespace SelectiveEffects.Managers
             public static void Init()
             {
                 MelonPreferences_Category miscCategory = MelonPreferences.CreateCategory("Misc");
-                miscCategory.SetFilePath(SettingsPath);
+                miscCategory.SetFilePath(SettingsPath, true, false);
 
                 _disableBossFx = miscCategory.CreateEntry<bool>("DisableBossFx", false);
                 _disableElfinFx = miscCategory.CreateEntry<bool>("DisableElfinFx", false);
