@@ -35,7 +35,7 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 * `DisableHurtFx` disables the text that appear when the character is hurt.
 * `DisableElfinFx` disables elfin effects.
 
-It is prefered to use the `DisableAllEfects` option instead of the individual options.
+It is prefered to use the `DisableAllEfects` option instead of the individual options (this doesn't apply to the Fever effects since they are handled in a different way).
 
 ## In-game screenshots
 ### Menu Toggle
