@@ -11,7 +11,7 @@ namespace SelectiveEffects.Patches
         [HarmonyPatch(nameof(BaseEnemyObjectController.OnControllerAttacked))]
         public static void Postfix(BaseEnemyObjectController __instance)
         {
-            if (!SettingsManager.Enabled) return;
+            if (!SettingsManager.IsEnabled) return;
 
             if (SettingsManager.DisableAllEffects || SettingsManager.DisableHitEnemy)
             {

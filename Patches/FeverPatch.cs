@@ -14,7 +14,7 @@ namespace SelectiveEffects.Patches
         public static void ActivateFeverPostfix(FeverEffectManager __instance)
         {
             if (GlobalDataBase.s_DbTouhou.isBadApple
-                || !SettingsManager.Enabled) return;
+                || !SettingsManager.IsEnabled) return;
 
             if (SettingsManager.DisableFever)
             {
@@ -40,7 +40,7 @@ namespace SelectiveEffects.Patches
         public static bool CancelFeverEffect(FeverEffectManager __instance)
         {
             if (GlobalDataBase.s_DbTouhou.isBadApple
-                || !SettingsManager.Enabled
+                || !SettingsManager.IsEnabled
                 || SettingsManager.DisableFever
                 || !SettingsManager.DisableTransition) return true;
 

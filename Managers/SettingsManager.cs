@@ -10,23 +10,23 @@ namespace SelectiveEffects.Managers
         // Main Category
         //--------------------------------------------------------------------+
         public static bool DisableAllEffects => MainCategory._disableAllEffects.Value;
-        public static bool Enabled
+        public static bool IsEnabled
         {
-            get => MainCategory._enabled.Value;
-            set => MainCategory._enabled.Value = value;
+            get => MainCategory._isEnabled.Value;
+            set => MainCategory._isEnabled.Value = value;
         }
 
         private static class MainCategory
         {
             public static MelonPreferences_Entry<bool> _disableAllEffects;
-            public static MelonPreferences_Entry<bool> _enabled;
+            public static MelonPreferences_Entry<bool> _isEnabled;
 
             public static void Init()
             {
                 MelonPreferences_Category mainCategory = MelonPreferences.CreateCategory("Main");
                 mainCategory.SetFilePath(SettingsPath, true, false);
 
-                _enabled = mainCategory.CreateEntry<bool>("Enabled", true, description: "Enable or disable the mod!");
+                _isEnabled = mainCategory.CreateEntry<bool>("Enabled", true, description: "Enable or disable the mod!");
                 _disableAllEffects = mainCategory.CreateEntry<bool>("DisableAllEfects", true, description: "Takes precedence to the following options.");
             }
 

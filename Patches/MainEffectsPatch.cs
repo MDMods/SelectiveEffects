@@ -27,7 +27,7 @@ namespace SelectiveEffects.Patches
         [HarmonyPatch(nameof(Effect.CreateInstance))]
         public static void DisableEffects(Effect __instance, ref GameObject __result)
         {
-            if (!SettingsManager.Enabled) return;
+            if (!SettingsManager.IsEnabled) return;
 
             if (!SettingsManager.DisableAllEffects
                 && !EffectsDisablerManager.effectsDisabledUids.Contains(__instance.uid)

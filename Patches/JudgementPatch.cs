@@ -10,7 +10,7 @@ namespace SelectiveEffects.Patches
     {
         public static void Postfix()
         {
-            if (!SettingsManager.Enabled) return;
+            if (!SettingsManager.IsEnabled) return;
 
             if (!SettingsManager.DisableJudgement && !SettingsManager.MakeJudgementSmaller) return;
             Transform effectsTransform = GameObject.Find("Effects").transform;
