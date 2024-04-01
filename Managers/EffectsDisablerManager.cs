@@ -1,4 +1,7 @@
-﻿namespace SelectiveEffects.Managers
+﻿using MuseDashMirror.Attributes;
+using UnityEngine;
+
+namespace SelectiveEffects.Managers
 {
     using static SettingsManager;
 
@@ -10,8 +13,11 @@
     }
     */
 
-    internal static class EffectsDisablerManager
+    internal static partial class EffectsDisablerManager
     {
+        [PnlMenuToggle("EffectsToggleObject", "Disable Effects", nameof(SettingsManager.IsEnabled))]
+        private static GameObject EffectsToggle { get; set; }
+        
         public static List<EffectsCondition> effectsDisablerList;
         public static HashSet<string> effectsDisabledUids = new();
         public static bool AnyEffect = false;

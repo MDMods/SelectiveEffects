@@ -3,7 +3,7 @@ using SelectiveEffects.Managers;
 
 namespace SelectiveEffects
 {
-    public class Main : MelonMod
+    public partial class Main : MelonMod
     {
         internal static bool _isGameMain = false;
         public static bool IsGameMain => _isGameMain;

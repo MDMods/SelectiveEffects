@@ -45,4 +45,8 @@
 	</Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MuseDashMirror" Version="3.1.4" />
+  </ItemGroup>
+
 </Project>
