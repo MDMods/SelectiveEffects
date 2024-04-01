@@ -23,40 +23,7 @@ internal static partial class EffectsDisablerManager
     public static void Init()
     {
         if (DisableAllEffects) return;
-
-        /*
-        CheckJudgementOptions();
-
-        if (DisableGirlFxAtk) DisableEffectsList.Add(new GirlFxAtk());
-        if (DisablePressFx) DisableEffectsList.Add(new PressFx());
-
-        CheckMusicNotesOptions();
-        CheckHeartsOptions();
-
-        if (DisableBossFx) DisableEffectsList.Add(new BossFx());
-        if (DisableElfinFx) DisableEffectsList.Add(new ElfinFx());
-        if (DisableDustFx) DisableEffectsList.Add(new DustFx());
-        if (DisableHurtFx) DisableEffectsList.Add(new HurtFx());
-        */
-        /*
-        new Perfects();
-        new Greats();
-        new Pass();
-
-        new GirlFxAtk();
-        new PressFx();
-
-        new FxScore();
-        new TxtScore();
-
-        new FxHp();
-        new TxtHp();
-
-        new BossFx();
-        new ElfinFx();
-        new DustFx();
-        new HurtFx();
-        */
+        
         Perfects.Instance.CheckAndAddInstance();
         Greats.Instance.CheckAndAddInstance();
         Pass.Instance.CheckAndAddInstance();
@@ -75,28 +42,4 @@ internal static partial class EffectsDisablerManager
         DustFx.Instance.CheckAndAddInstance();
         HurtFx.Instance.CheckAndAddInstance();
     }
-
-    /*
-    private static void CheckHeartsOptions()
-    {
-        if (!DisableHeartsFx) return;
-        DisableEffectsList.Add(new FxHp());
-        DisableEffectsList.Add(new TxtHp());
-    }
-
-    private static void CheckMusicNotesOptions()
-    {
-        if (!DisableMusicNotesFx) return;
-        DisableEffectsList.Add(new FxScore());
-        DisableEffectsList.Add(new TxtScore());
-    }
-
-    private static void CheckJudgementOptions()
-    {
-        if (DisableJudgement) return;
-        if (DisablePerfects) DisableEffectsList.Add(new Perfects());
-        if (DisableGreats) DisableEffectsList.Add(new Greats());
-        if (DisablePass) DisableEffectsList.Add(new Pass());
-    }
-    */
 }
