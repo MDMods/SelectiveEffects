@@ -1,10 +1,13 @@
-﻿namespace SelectiveEffects.Models;
+﻿using UnityEngine;
+
+namespace SelectiveEffects.Models;
 
 internal abstract class EffectsBaseCondition
 {
     internal static List<EffectsBaseCondition> DisableEffectsList { get; } = new();
 
-    internal static HashSet<string> DisabledEffectsUids { get; } = new();
+    //internal static HashSet<string> DisabledEffectsUids { get; } = new();
+    internal static Dictionary<string, Action<GameObject>> DisabledEffectsUids { get; } = new();
 
     protected abstract bool SettingsValue { get; }
 
@@ -19,8 +22,10 @@ internal abstract class EffectsBaseCondition
 
     protected virtual void Action(string s)
     {
-        DisabledEffectsUids.Add(s);
+        DisabledEffectsUids.TryAdd(s, FoundAction);
     }
+
+    protected virtual void FoundAction(GameObject go) => go.SetActive(false);
 
     internal void CheckConditionAndAddUid(string uid)
     {
