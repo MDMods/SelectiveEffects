@@ -1,5 +1,6 @@
 ﻿using MelonLoader;
 using SelectiveEffects.Managers;
+using SelectiveEffects.Properties;
 
 namespace SelectiveEffects;
 
@@ -12,7 +13,7 @@ public partial class Main : MelonMod
     {
         SettingsManager.Load();
         EffectsDisablerManager.Init();
-        LoggerInstance.Msg("SelectiveEffects has loaded correctly!");
+        LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
     }
 
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
