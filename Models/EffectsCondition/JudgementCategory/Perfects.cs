@@ -8,7 +8,7 @@ internal class Perfects : EffectsBaseCondition
     {
     }
 
-    protected override bool SettingsValue => SettingsManager.DisablePerfects || SettingsManager.DisablePass;
+    protected override bool SettingsValue => SettingsManager.DisablePerfects || SettingsManager.DisableJudgement;
 
     internal static Perfects Instance { get; } = new();
 
