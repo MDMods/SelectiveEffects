@@ -1,4 +1,7 @@
-﻿namespace SelectiveEffects.Models.EffectsCondition.JudgementCategory;
+﻿using SelectiveEffects.Managers;
+using UnityEngine;
+
+namespace SelectiveEffects.Models.EffectsCondition.JudgementCategory;
 
 // Unused
 internal class JudgementSize : EffectsBaseCondition
@@ -7,12 +10,31 @@ internal class JudgementSize : EffectsBaseCondition
     {
     }
 
-    protected override bool SettingsValue => false;
+    protected override bool SettingsValue => SettingsManager.MakeJudgementSmaller;
 
     internal static JudgementSize Instance { get; } = new();
 
     protected override bool Condition(string s)
     {
-        return s.Contains("Score");
+        return s.Contains("Img");
+    }
+
+    protected override void FoundAction(GameObject go)
+    {
+        if (!go.name.Contains("Gold"))
+        {
+            if (go.TryGetComponent(out JudgmentScaler _)) return;
+            
+            go.AddComponent<JudgmentScaler>();
+
+            return;
+        }
+        
+        for (var i = 0; i < go.transform.childCount; i++) {
+            var child = go.transform.GetChild(i);
+                    
+            if (child.TryGetComponent(out JudgmentScaler _)) return;
+            child.gameObject.AddComponent<JudgmentScaler>();
+        }
     }
 }

@@ -28,6 +28,7 @@ internal static partial class EffectsDisablerManager
         Perfects.Instance.CheckAndAddInstance();
         Greats.Instance.CheckAndAddInstance();
         Pass.Instance.CheckAndAddInstance();
+        JudgementSize.Instance.CheckAndAddInstance();
 
         GirlFxAtk.Instance.CheckAndAddInstance();
         PressFx.Instance.CheckAndAddInstance();

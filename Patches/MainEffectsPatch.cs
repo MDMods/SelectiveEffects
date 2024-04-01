@@ -15,7 +15,7 @@ internal static class MainEffectsPatch
         if (!Main.IsGameMain) return;
 
         if (SettingsManager.DisableAllEffects) return;
-        
+
         EffectsDisablerManager.DisableEffectsList.ForEach(effectObject =>
             effectObject.CheckConditionAndAddUid(__instance.uid));
     }
@@ -26,13 +26,8 @@ internal static class MainEffectsPatch
     public static void DisableEffects(Effect __instance, ref GameObject __result)
     {
         if (!SettingsManager.IsEnabled) return;
-        /*
-        if (!SettingsManager.DisableAllEffects
-            && !EffectsDisablerManager.DisabledEffectsUids.Contains(__instance.uid)
-           ) return;
-        __result.SetActive(false);
-        */
-        if (SettingsManager.DisableJudgement)
+
+        if (SettingsManager.DisableAllEffects)
         {
             __result.SetActive(false);
             return;
