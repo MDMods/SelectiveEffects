@@ -10,13 +10,13 @@ internal static partial class SettingsManager
     internal static bool DisableJudgement => JudgementCategory._disableJudgement.Value
                                              || (DisablePerfects && DisableGreats && DisablePass)
                                              || ScalePercentage == 0;
-    
+
     internal static bool DisablePerfects => JudgementCategory._disablePerfects.Value;
     internal static bool DisableGreats => JudgementCategory._disableGreats.Value;
     internal static bool DisablePass => JudgementCategory._disablePass.Value;
     internal static bool MakeJudgementSmaller => JudgementCategory._makeJudgementSmaller.Value;
     internal static int ScalePercentage => JudgementCategory._scalePercentage.Value;
-    
+
     private static class JudgementCategory
     {
         internal static MelonPreferences_Entry<bool> _disableJudgement;
@@ -39,7 +39,7 @@ internal static partial class SettingsManager
                 description: "DisableJudgement takes precedence.");
             _scalePercentage = judgementCategory.CreateEntry("JudgementScalePercentage", 75,
                 description: "Range from 0-100%");
-            
+
             // Verify scale is within range
             var currentScale = ScalePercentage;
             _scalePercentage.Value = Math.Clamp(ScalePercentage, 0, 100);

@@ -13,7 +13,7 @@ internal static partial class SettingsManager
     internal static bool DisableBG => FeverCategory._disableBG.Value;
     internal static bool DisableStars => FeverCategory._disableStars.Value;
     internal static bool DisableTransition => FeverCategory._disableTransition.Value;
-    
+
     private static class FeverCategory
     {
         internal static MelonPreferences_Entry<bool> _disableFever;

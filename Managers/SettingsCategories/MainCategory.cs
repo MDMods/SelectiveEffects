@@ -14,7 +14,7 @@ internal static partial class SettingsManager
         get => MainCategory._isEnabled.Value;
         set => MainCategory._isEnabled.Value = value;
     }
-    
+
     private static class MainCategory
     {
         internal static MelonPreferences_Entry<bool> _disableAllEffects;

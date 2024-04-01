@@ -11,7 +11,7 @@ internal static partial class SettingsManager
     internal static bool DisableDustFx => MiscCategory._disableDustFx.Value;
     internal static bool DisableHurtFx => MiscCategory._disableHurtFx.Value;
     internal static bool DisableElfinFx => MiscCategory._disableElfinFx.Value;
-    
+
     private static class MiscCategory
     {
         internal static MelonPreferences_Entry<bool> _disableBossFx;

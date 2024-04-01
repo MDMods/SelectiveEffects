@@ -24,15 +24,16 @@ internal class JudgementSize : EffectsBaseCondition
         if (!go.name.Contains("Gold"))
         {
             if (go.TryGetComponent(out JudgmentScaler _)) return;
-            
+
             go.AddComponent<JudgmentScaler>();
 
             return;
         }
-        
-        for (var i = 0; i < go.transform.childCount; i++) {
+
+        for (var i = 0; i < go.transform.childCount; i++)
+        {
             var child = go.transform.GetChild(i);
-                    
+
             if (child.TryGetComponent(out JudgmentScaler _)) return;
             child.gameObject.AddComponent<JudgmentScaler>();
         }

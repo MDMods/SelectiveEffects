@@ -1,5 +1,4 @@
-﻿using MelonLoader;
-using SelectiveEffects.Properties;
+﻿using SelectiveEffects.Properties;
 
 namespace SelectiveEffects.Managers;
 

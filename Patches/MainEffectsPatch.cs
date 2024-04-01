@@ -19,7 +19,7 @@ internal static class MainEffectsPatch
         EffectsDisablerManager.DisableEffectsList.ForEach(effectObject =>
             effectObject.CheckConditionAndAddUid(__instance.uid));
     }
-    
+
     [HarmonyPatch(nameof(Effect.CreateInstance))]
     [HarmonyPostfix]
     internal static void CreateInstancePostfix(Effect __instance, ref GameObject __result)

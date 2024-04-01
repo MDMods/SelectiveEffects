@@ -10,7 +10,7 @@ internal class JudgmentScaler : MonoBehaviour
     public JudgmentScaler(IntPtr ptr) : base(ptr)
     {
     }
-    
+
     public void Awake()
     {
         if (SettingsManager.IsEnabled || SettingsManager.MakeJudgementSmaller) return;
@@ -20,6 +20,6 @@ internal class JudgmentScaler : MonoBehaviour
 
     public void LateUpdate()
     {
-        transform.localScale *= (float) SettingsManager.ScalePercentage / 100;
+        transform.localScale *= (float)SettingsManager.ScalePercentage / 100;
     }
 }

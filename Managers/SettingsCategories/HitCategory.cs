@@ -15,7 +15,7 @@ internal static partial class SettingsManager
 
     internal static bool DisableHitEnemy => DisableHitDisappearAnimations
                                             && (DisableHitEffects || DisableGirlFxAtk);
-    
+
     private static class HitCategory
     {
         internal static MelonPreferences_Entry<bool> _disableHitDissapearAnimations;

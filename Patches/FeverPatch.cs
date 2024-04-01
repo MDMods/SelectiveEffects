@@ -32,7 +32,6 @@ internal static class FeverPatch
     }
 
 
-    
     [HarmonyPatch(nameof(FeverEffectManager.CancelFeverEffect))]
     [HarmonyPrefix]
     internal static bool CancelFeverEffectPrefix(FeverEffectManager __instance)

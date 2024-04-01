@@ -15,16 +15,17 @@ internal static partial class EffectsDisablerManager
     [PnlMenuToggle("EffectsToggleObject", "Disable Effects", nameof(SettingsManager.IsEnabled))]
     private static GameObject DisableEffectsToggle { get; set; }
 
+    
+    internal static Dictionary<string, Action<GameObject>> DisabledEffectsUids =>
+        EffectsBaseCondition.DisabledEffectsUids;
 
-    //internal static HashSet<string> DisabledEffectsUids => EffectsBaseCondition.DisabledEffectsUids;
-    internal static Dictionary<string, Action<GameObject>> DisabledEffectsUids => EffectsBaseCondition.DisabledEffectsUids;
     internal static List<EffectsBaseCondition> DisableEffectsList => EffectsBaseCondition.DisableEffectsList;
     internal static bool DisableAnyEffect => DisableEffectsList.Count > 0;
 
     internal static void Init()
     {
         if (DisableAllEffects) return;
-        
+
         Perfects.Instance.CheckAndAddInstance();
         Greats.Instance.CheckAndAddInstance();
         Pass.Instance.CheckAndAddInstance();

@@ -9,7 +9,7 @@ internal static partial class SettingsManager
     //--------------------------------------------------------------------+
     internal static bool DisableMusicNotesFx => MusicHeartsCategory._disableMusicNotesFx.Value;
     internal static bool DisableHeartsFx => MusicHeartsCategory._disableHeartsFx.Value;
-    
+
     private static class MusicHeartsCategory
     {
         internal static MelonPreferences_Entry<bool> _disableMusicNotesFx;
