@@ -1,10 +1,11 @@
 ﻿using MelonLoader;
+using SelectiveEffects.Properties;
 
 namespace SelectiveEffects.Managers;
 
 internal static partial class SettingsManager
 {
-    private const string SettingsPath = "UserData/SelectiveEffects.cfg";
+    private const string SettingsPath = $"UserData/{MelonBuildInfo.ModName}.cfg";
 
     internal static void Load()
     {
