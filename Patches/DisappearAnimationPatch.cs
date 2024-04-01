@@ -25,7 +25,7 @@ internal static class DisappearAnimationPatch
             if (out_fx) Object.Destroy(out_fx);
         }
 
-        if (!SettingsManager.DisableHitDissapearAnimations) return;
+        if (!SettingsManager.DisableHitDisappearAnimations) return;
         __instance.m_SkeletonAnimation.skeleton.a = 0f;
     }
 }

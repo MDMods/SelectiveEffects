@@ -16,9 +16,8 @@ internal static class MainEffectsPatch
 
         if (SettingsManager.DisableAllEffects) return;
 
-        foreach (var effecObject in EffectsDisablerManager.DisableEffectsList)
-            if (effecObject.CheckDo(__instance.uid))
-                return;
+        EffectsDisablerManager.DisableEffectsList.ForEach(effectObject =>
+            effectObject.CheckConditionAndAddUid(__instance.uid));
     }
 
 

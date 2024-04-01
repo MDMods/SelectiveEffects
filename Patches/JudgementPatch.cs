@@ -21,6 +21,7 @@ internal static class JudgementPatch
             return;
         }
 
+        // MakeJudgementSmaller
         effectsTransform.localScale = new Vector3(0.75f, 1f, 1f);
         effectsTransform.position = new Vector3(-1f, -0.3f, 0f);
     }
