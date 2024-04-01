@@ -4,7 +4,7 @@ using SelectiveEffects.Properties;
 
 namespace SelectiveEffects;
 
-public partial class Main : MelonMod
+public sealed partial class Main : MelonMod
 {
     internal static bool _isGameMain;
     public static bool IsGameMain => _isGameMain;

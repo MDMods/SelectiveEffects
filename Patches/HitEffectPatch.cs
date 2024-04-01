@@ -7,7 +7,7 @@ namespace SelectiveEffects.Patches;
 [HarmonyPatch(typeof(AttackEffectManager), nameof(AttackEffectManager.PlayAttackEffect))]
 internal static class HitEffectPatch
 {
-    public static void Postfix(AttackEffectManager __instance)
+    internal static void Postfix(AttackEffectManager __instance)
     {
         if (!SettingsManager.IsEnabled) return;
 

@@ -9,7 +9,7 @@ namespace SelectiveEffects.Patches;
 internal static class DisappearAnimationPatch
 {
     [HarmonyPatch(nameof(BaseEnemyObjectController.OnControllerAttacked))]
-    public static void Postfix(BaseEnemyObjectController __instance)
+    internal static void Postfix(BaseEnemyObjectController __instance)
     {
         if (!SettingsManager.IsEnabled) return;
 

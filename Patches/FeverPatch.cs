@@ -10,7 +10,7 @@ internal static class FeverPatch
 {
     [HarmonyPostfix]
     [HarmonyPatch(nameof(FeverEffectManager.ActivateFever))]
-    public static void ActivateFeverPostfix(FeverEffectManager __instance)
+    internal static void ActivateFeverPostfix(FeverEffectManager __instance)
     {
         if (GlobalDataBase.s_DbTouhou.isBadApple
             || !SettingsManager.IsEnabled) return;

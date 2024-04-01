@@ -21,7 +21,7 @@ internal static partial class EffectsDisablerManager
     internal static List<EffectsBaseCondition> DisableEffectsList => EffectsBaseCondition.DisableEffectsList;
     internal static bool DisableAnyEffect => DisableEffectsList.Count > 0;
 
-    public static void Init()
+    internal static void Init()
     {
         if (DisableAllEffects) return;
         
