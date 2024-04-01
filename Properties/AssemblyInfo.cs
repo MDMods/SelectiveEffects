@@ -1,5 +1,5 @@
-﻿using MelonLoader;
-using System.Reflection;
+﻿using System.Reflection;
+using MelonLoader;
 using Main = SelectiveEffects.Main;
 
 [assembly: MelonInfo(typeof(Main), "SelectiveEffects", "1.2.1", "Asgragrt")]

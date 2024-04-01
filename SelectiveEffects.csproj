@@ -1,52 +1,52 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    </PropertyGroup>
 
-  <Target Name="CopyDLLs" AfterTargets="Build">
-    <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="$(MD_NET6_DIRECTORY)\Mods" />
-    <Message Text="Copied DLL -&gt; $(MD_NET6_DIRECTORY)\Mods\$(ProjectName).dll" Importance="High" />
-  </Target>
+    <Target Name="CopyDLLs" AfterTargets="Build">
+        <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="$(MD_NET6_DIRECTORY)\Mods"/>
+        <Message Text="Copied DLL -&gt; $(MD_NET6_DIRECTORY)\Mods\$(ProjectName).dll" Importance="High"/>
+    </Target>
 
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppInterop.Runtime">
-      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem">
-      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-	<Reference Include="Il2CppSirenix.Serialization">
-		<HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath>
-	</Reference>
-	<Reference Include="Il2Cppspine-unity">
-		<HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2Cppspine-unity.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEngine.UI">
-		<HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
-	</Reference>
-  </ItemGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppInterop.Runtime">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSirenix.Serialization">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2Cppspine-unity">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2Cppspine-unity.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MuseDashMirror" Version="3.1.4" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MuseDashMirror" Version="3.1.4"/>
+    </ItemGroup>
 
 </Project>
