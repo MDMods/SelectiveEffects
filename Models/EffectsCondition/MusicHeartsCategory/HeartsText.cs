@@ -2,15 +2,15 @@
 
 namespace SelectiveEffects.Models.EffectsCondition.MusicHeartsCategory;
 
-internal class TxtHp : EffectsBaseCondition
+internal class HeartsText : EffectsBaseCondition
 {
-    private TxtHp()
+    private HeartsText()
     {
     }
 
     protected override bool SettingsValue => SettingsManager.DisableHeartsFx;
 
-    internal static TxtHp Instance { get; } = new();
+    internal static HeartsText Instance { get; } = new();
 
     protected override bool Condition(string s)
     {

@@ -31,11 +31,11 @@ internal static partial class EffectsDisablerManager
         GirlFxAtk.Instance.CheckAndAddInstance();
         PressFx.Instance.CheckAndAddInstance();
 
-        FxScore.Instance.CheckAndAddInstance();
-        TxtScore.Instance.CheckAndAddInstance();
+        MusicNotesFx.Instance.CheckAndAddInstance();
+        MusicNotesText.Instance.CheckAndAddInstance();
 
-        FxHp.Instance.CheckAndAddInstance();
-        TxtHp.Instance.CheckAndAddInstance();
+        HeartsFx.Instance.CheckAndAddInstance();
+        HeartsText.Instance.CheckAndAddInstance();
 
         BossFx.Instance.CheckAndAddInstance();
         ElfinFx.Instance.CheckAndAddInstance();

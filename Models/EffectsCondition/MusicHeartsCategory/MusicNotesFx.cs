@@ -2,15 +2,15 @@
 
 namespace SelectiveEffects.Models.EffectsCondition.MusicHeartsCategory;
 
-internal class FxScore : EffectsBaseCondition
+internal class MusicNotesFx : EffectsBaseCondition
 {
-    private FxScore()
+    private MusicNotesFx()
     {
     }
 
     protected override bool SettingsValue => SettingsManager.DisableMusicNotesFx;
 
-    internal static FxScore Instance { get; } = new();
+    internal static MusicNotesFx Instance { get; } = new();
 
     protected override bool Condition(string s)
     {
