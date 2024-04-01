@@ -8,8 +8,8 @@ namespace SelectiveEffects.Patches;
 [HarmonyPatch(typeof(FeverEffectManager))]
 internal static class FeverPatch
 {
-    [HarmonyPostfix]
     [HarmonyPatch(nameof(FeverEffectManager.ActivateFever))]
+    [HarmonyPostfix]
     internal static void ActivateFeverPostfix(FeverEffectManager __instance)
     {
         if (GlobalDataBase.s_DbTouhou.isBadApple
@@ -32,9 +32,10 @@ internal static class FeverPatch
     }
 
 
-    [HarmonyPrefix]
+    
     [HarmonyPatch(nameof(FeverEffectManager.CancelFeverEffect))]
-    public static bool CancelFeverEffect(FeverEffectManager __instance)
+    [HarmonyPrefix]
+    internal static bool CancelFeverEffectPrefix(FeverEffectManager __instance)
     {
         if (GlobalDataBase.s_DbTouhou.isBadApple
             || !SettingsManager.IsEnabled

@@ -5,10 +5,9 @@ using Object = UnityEngine.Object;
 
 namespace SelectiveEffects.Patches;
 
-[HarmonyPatch(typeof(BaseEnemyObjectController))]
+[HarmonyPatch(typeof(BaseEnemyObjectController), nameof(BaseEnemyObjectController.OnControllerAttacked))]
 internal static class DisappearAnimationPatch
 {
-    [HarmonyPatch(nameof(BaseEnemyObjectController.OnControllerAttacked))]
     internal static void Postfix(BaseEnemyObjectController __instance)
     {
         if (!SettingsManager.IsEnabled) return;

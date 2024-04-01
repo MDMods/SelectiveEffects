@@ -8,9 +8,9 @@ namespace SelectiveEffects.Patches;
 [HarmonyPatch(typeof(Effect))]
 internal static class MainEffectsPatch
 {
-    [HarmonyPostfix]
     [HarmonyPatch(nameof(Effect.Init))]
-    internal static void ModifyPrefabs(Effect __instance)
+    [HarmonyPostfix]
+    internal static void InitPostfix(Effect __instance)
     {
         if (!Main.IsGameMain) return;
 
@@ -19,11 +19,10 @@ internal static class MainEffectsPatch
         EffectsDisablerManager.DisableEffectsList.ForEach(effectObject =>
             effectObject.CheckConditionAndAddUid(__instance.uid));
     }
-
-
-    [HarmonyPostfix]
+    
     [HarmonyPatch(nameof(Effect.CreateInstance))]
-    internal static void DisableEffects(Effect __instance, ref GameObject __result)
+    [HarmonyPostfix]
+    internal static void CreateInstancePostfix(Effect __instance, ref GameObject __result)
     {
         if (!SettingsManager.IsEnabled) return;
 
