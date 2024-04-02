@@ -20,7 +20,7 @@ internal static partial class SettingsManager
         Watcher.Filter = SettingsFileName;
         Watcher.EnableRaisingEvents = true;
 
-        Watcher.Changed += Main.Reload;
+        Watcher.Changed += Main.QueueReload;
     }
 
     internal static void Load()

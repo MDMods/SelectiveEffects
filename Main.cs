@@ -6,7 +6,10 @@ namespace SelectiveEffects;
 
 public sealed partial class Main : MelonMod
 {
-    internal static bool IsGameMain { get; private set; }
+    private static event Action _queueReload;
+    
+    internal static string CurrentScene { get; private set; }
+    internal static bool IsGameMain => CurrentScene.Equals("GameMain");
 
     public override void OnInitializeMelon()
     {
@@ -15,10 +18,25 @@ public sealed partial class Main : MelonMod
 
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
-        IsGameMain = sceneName.Equals("GameMain");
+        CurrentScene = sceneName;
+        
+        if (IsGameMain) return;
+        _queueReload?.Invoke();
     }
 
-    internal static void Reload(object sender, FileSystemEventArgs e)
+    internal static void QueueReload(object sender, FileSystemEventArgs e)
+    {
+        if (!IsGameMain)
+        {
+            Reload();
+            return;
+        }
+        
+        _queueReload -= Reload;
+        _queueReload += Reload;
+    }
+
+    private static void Reload()
     {
         SettingsManager.Load();
         EffectsDisablerManager.ReloadToggle();
