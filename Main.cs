@@ -25,11 +25,6 @@ public sealed partial class Main : MelonMod
         EffectsDisablerManager.ReloadToggle();
         EffectsDisablerManager.Load();
         
-        Melon<Main>.Logger.Msg(EffectsDisablerManager.DisableEffectsList.Count);
-        
         Melon<Main>.Logger.Msg("Reloaded successfully!");
     }
-    /*
-     * TODO: Check hot reload, and maybe wrappers
-     */
 }
