@@ -30,7 +30,7 @@ internal static partial class EffectsDisablerManager
     {
         DisableEffectsList.Clear();
         DisabledEffectsUids.Clear();
-        
+
         if (SettingsManager.DisableAllEffects) return;
 
         Perfects.Instance.CheckAndAddInstance();

@@ -45,7 +45,7 @@ internal static partial class SettingsManager
         internal static void Init()
         {
             Category.LoadFromFile(false);
-            
+
             // Verify scale is within range
             var currentScale = ScalePercentage;
             _scalePercentage.Value = Math.Clamp(ScalePercentage, 0, 100);

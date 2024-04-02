@@ -5,7 +5,7 @@ namespace SelectiveEffects.Models;
 internal abstract class EffectsBaseCondition
 {
     internal static List<EffectsBaseCondition> DisableEffectsList { get; } = [];
-    
+
     internal static Dictionary<string, Action<GameObject>> DisabledEffectsUids { get; } = new();
 
     protected abstract bool SettingsValue { get; }

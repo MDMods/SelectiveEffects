@@ -22,21 +22,21 @@ internal static partial class SettingsManager
         internal static readonly MelonPreferences_Entry<bool> _disableStars;
         internal static readonly MelonPreferences_Entry<bool> _disableTransition;
 
-
-        internal static void Init()
-        {
-            Category.LoadFromFile(false);
-        }
-
         static FeverCategory()
         {
             Category = MelonPreferences.CreateCategory("Fever");
             Category.SetFilePath(SettingsPath, false, false);
-            
+
             _disableFever = Category.CreateEntry("DisableFever", false);
             _disableBG = Category.CreateEntry("DisableBackground", false);
             _disableStars = Category.CreateEntry("DisableStars", false);
             _disableTransition = Category.CreateEntry("DisableTransition", false);
+        }
+
+
+        internal static void Init()
+        {
+            Category.LoadFromFile(false);
         }
     }
 }
