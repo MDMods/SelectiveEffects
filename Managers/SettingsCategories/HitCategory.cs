@@ -18,23 +18,29 @@ internal static partial class SettingsManager
 
     private static class HitCategory
     {
-        internal static MelonPreferences_Entry<bool> _disableHitDissapearAnimations;
-        internal static MelonPreferences_Entry<bool> _disableHitEffects;
-        internal static MelonPreferences_Entry<bool> _disableGirlFxAtk;
-        internal static MelonPreferences_Entry<bool> _disableGirlAtkParticles;
-        internal static MelonPreferences_Entry<bool> _disablePressFx;
+        private static readonly MelonPreferences_Category Category;
+        internal static readonly MelonPreferences_Entry<bool> _disableHitDissapearAnimations;
+        internal static readonly MelonPreferences_Entry<bool> _disableHitEffects;
+        internal static readonly MelonPreferences_Entry<bool> _disableGirlFxAtk;
+        internal static readonly MelonPreferences_Entry<bool> _disableGirlAtkParticles;
+        internal static readonly MelonPreferences_Entry<bool> _disablePressFx;
+
+        static HitCategory()
+        {
+            Category = MelonPreferences.CreateCategory("Hit");
+            Category.SetFilePath(SettingsPath, false, false);
+
+            _disableHitDissapearAnimations = Category.CreateEntry("DisableHitDissapearAnimations", false,
+                description: "Hit enemies disappear immediatly.");
+            _disableHitEffects = Category.CreateEntry("DisableHitEffects", false);
+            _disableGirlFxAtk = Category.CreateEntry("DisableGirlHitFx", false);
+            _disableGirlAtkParticles = Category.CreateEntry("DisableGirlHitParticlesOnly", false);
+            _disablePressFx = Category.CreateEntry("DisablePressFx", false);
+        }
 
         internal static void Init()
         {
-            var hitCategory = MelonPreferences.CreateCategory("Hit");
-            hitCategory.SetFilePath(SettingsPath, true, false);
-
-            _disableHitDissapearAnimations = hitCategory.CreateEntry("DisableHitDissapearAnimations", false,
-                description: "Hit enemies disappear immeadiatly.");
-            _disableHitEffects = hitCategory.CreateEntry("DisableHitEffects", false);
-            _disableGirlFxAtk = hitCategory.CreateEntry("DisableGirlHitFx", false);
-            _disableGirlAtkParticles = hitCategory.CreateEntry("DisableGirlHitParticlesOnly", false);
-            _disablePressFx = hitCategory.CreateEntry("DisablePressFx", false);
+            Category.LoadFromFile(false);
         }
     }
 }

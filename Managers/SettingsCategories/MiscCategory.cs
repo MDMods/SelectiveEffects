@@ -14,20 +14,26 @@ internal static partial class SettingsManager
 
     private static class MiscCategory
     {
-        internal static MelonPreferences_Entry<bool> _disableBossFx;
-        internal static MelonPreferences_Entry<bool> _disableDustFx;
-        internal static MelonPreferences_Entry<bool> _disableHurtFx;
-        internal static MelonPreferences_Entry<bool> _disableElfinFx;
+        private static readonly MelonPreferences_Category Category;
+        internal static readonly MelonPreferences_Entry<bool> _disableBossFx;
+        internal static readonly MelonPreferences_Entry<bool> _disableDustFx;
+        internal static readonly MelonPreferences_Entry<bool> _disableHurtFx;
+        internal static readonly MelonPreferences_Entry<bool> _disableElfinFx;
+
+        static MiscCategory()
+        {
+            Category = MelonPreferences.CreateCategory("Misc");
+            Category.SetFilePath(SettingsPath, false, false);
+
+            _disableBossFx = Category.CreateEntry("DisableBossFx", false);
+            _disableElfinFx = Category.CreateEntry("DisableElfinFx", false);
+            _disableDustFx = Category.CreateEntry("DisableDustFx", false);
+            _disableHurtFx = Category.CreateEntry("DisableHurtFx", false, description: "Disable hp loss text.");
+        }
 
         internal static void Init()
         {
-            var miscCategory = MelonPreferences.CreateCategory("Misc");
-            miscCategory.SetFilePath(SettingsPath, true, false);
-
-            _disableBossFx = miscCategory.CreateEntry("DisableBossFx", false);
-            _disableElfinFx = miscCategory.CreateEntry("DisableElfinFx", false);
-            _disableDustFx = miscCategory.CreateEntry("DisableDustFx", false);
-            _disableHurtFx = miscCategory.CreateEntry("DisableHurtFx", false, description: "Disable hp loss text.");
+            Category.LoadFromFile(false);
         }
     }
 }

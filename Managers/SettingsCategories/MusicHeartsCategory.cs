@@ -12,18 +12,24 @@ internal static partial class SettingsManager
 
     private static class MusicHeartsCategory
     {
-        internal static MelonPreferences_Entry<bool> _disableMusicNotesFx;
-        internal static MelonPreferences_Entry<bool> _disableHeartsFx;
+        private static readonly MelonPreferences_Category Category;
+        internal static readonly MelonPreferences_Entry<bool> _disableMusicNotesFx;
+        internal static readonly MelonPreferences_Entry<bool> _disableHeartsFx;
+
+        static MusicHeartsCategory()
+        {
+            Category = MelonPreferences.CreateCategory("MusicHearts");
+            Category.SetFilePath(SettingsPath, false, false);
+
+            _disableMusicNotesFx = Category.CreateEntry("DisableMusicNotesFx", false,
+                description: "Disable music notes points text.");
+            _disableHeartsFx = Category.CreateEntry("DisablHeartsFx", false,
+                description: "Disable hearts health gain text.");
+        }
 
         internal static void Init()
         {
-            var musicHeartsCategory = MelonPreferences.CreateCategory("MusicHearts");
-            musicHeartsCategory.SetFilePath(SettingsPath, true, false);
-
-            _disableMusicNotesFx = musicHeartsCategory.CreateEntry("DisableMusicNotesFx", false,
-                description: "Disable music notes points text.");
-            _disableHeartsFx = musicHeartsCategory.CreateEntry("DisablHeartsFx", false,
-                description: "Disable hearts health gain text.");
+            Category.LoadFromFile(false);
         }
     }
 }

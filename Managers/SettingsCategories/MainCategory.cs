@@ -17,17 +17,23 @@ internal static partial class SettingsManager
 
     private static class MainCategory
     {
-        internal static MelonPreferences_Entry<bool> _disableAllEffects;
-        internal static MelonPreferences_Entry<bool> _isEnabled;
+        private static readonly MelonPreferences_Category Category;
+        internal static readonly MelonPreferences_Entry<bool> _disableAllEffects;
+        internal static readonly MelonPreferences_Entry<bool> _isEnabled;
+
+        static MainCategory()
+        {
+            Category = MelonPreferences.CreateCategory("Main");
+            Category.SetFilePath(SettingsPath, false, false);
+
+            _isEnabled = Category.CreateEntry("Enabled", true, description: "Enable or disable the mod!");
+            _disableAllEffects = Category.CreateEntry("DisableAllEfects", true,
+                description: "Takes precedence to the following options.");
+        }
 
         internal static void Init()
         {
-            var mainCategory = MelonPreferences.CreateCategory("Main");
-            mainCategory.SetFilePath(SettingsPath, true, false);
-
-            _isEnabled = mainCategory.CreateEntry("Enabled", true, description: "Enable or disable the mod!");
-            _disableAllEffects = mainCategory.CreateEntry("DisableAllEfects", true,
-                description: "Takes precedence to the following options.");
+            Category.LoadFromFile(false);
         }
     }
 }

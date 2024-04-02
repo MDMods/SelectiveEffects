@@ -16,21 +16,27 @@ internal static partial class SettingsManager
 
     private static class FeverCategory
     {
-        internal static MelonPreferences_Entry<bool> _disableFever;
-        internal static MelonPreferences_Entry<bool> _disableBG;
-        internal static MelonPreferences_Entry<bool> _disableStars;
-        internal static MelonPreferences_Entry<bool> _disableTransition;
+        private static readonly MelonPreferences_Category Category;
+        internal static readonly MelonPreferences_Entry<bool> _disableFever;
+        internal static readonly MelonPreferences_Entry<bool> _disableBG;
+        internal static readonly MelonPreferences_Entry<bool> _disableStars;
+        internal static readonly MelonPreferences_Entry<bool> _disableTransition;
 
 
         internal static void Init()
         {
-            var feverCategory = MelonPreferences.CreateCategory("Fever");
-            feverCategory.SetFilePath(SettingsPath, true, false);
+            Category.LoadFromFile(false);
+        }
 
-            _disableFever = feverCategory.CreateEntry("DisableFever", false);
-            _disableBG = feverCategory.CreateEntry("DisableBackground", false);
-            _disableStars = feverCategory.CreateEntry("DisableStars", false);
-            _disableTransition = feverCategory.CreateEntry("DisableTransition", false);
+        static FeverCategory()
+        {
+            Category = MelonPreferences.CreateCategory("Fever");
+            Category.SetFilePath(SettingsPath, false, false);
+            
+            _disableFever = Category.CreateEntry("DisableFever", false);
+            _disableBG = Category.CreateEntry("DisableBackground", false);
+            _disableStars = Category.CreateEntry("DisableStars", false);
+            _disableTransition = Category.CreateEntry("DisableTransition", false);
         }
     }
 }

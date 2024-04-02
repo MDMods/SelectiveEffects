@@ -19,27 +19,33 @@ internal static partial class SettingsManager
 
     private static class JudgementCategory
     {
-        internal static MelonPreferences_Entry<bool> _disableJudgement;
-        internal static MelonPreferences_Entry<bool> _disablePerfects;
-        internal static MelonPreferences_Entry<bool> _disableGreats;
-        internal static MelonPreferences_Entry<bool> _disablePass;
-        internal static MelonPreferences_Entry<bool> _makeJudgementSmaller;
-        internal static MelonPreferences_Entry<int> _scalePercentage;
+        private static readonly MelonPreferences_Category Category;
+        internal static readonly MelonPreferences_Entry<bool> _disableJudgement;
+        internal static readonly MelonPreferences_Entry<bool> _disablePerfects;
+        internal static readonly MelonPreferences_Entry<bool> _disableGreats;
+        internal static readonly MelonPreferences_Entry<bool> _disablePass;
+        internal static readonly MelonPreferences_Entry<bool> _makeJudgementSmaller;
+        internal static readonly MelonPreferences_Entry<int> _scalePercentage;
+
+        static JudgementCategory()
+        {
+            Category = MelonPreferences.CreateCategory("Judgement");
+            Category.SetFilePath(SettingsPath, false, false);
+
+            _disableJudgement = Category.CreateEntry("DisableJudgement", false);
+            _disablePerfects = Category.CreateEntry("DisablePerfects", false);
+            _disableGreats = Category.CreateEntry("DisableGreats", false);
+            _disablePass = Category.CreateEntry("DisablePass", false);
+            _makeJudgementSmaller = Category.CreateEntry("MakeJudgementSmaller", false,
+                description: "DisableJudgement takes precedence.");
+            _scalePercentage = Category.CreateEntry("JudgementScalePercentage", 75,
+                description: "Range from 0-100%");
+        }
 
         internal static void Init()
         {
-            var judgementCategory = MelonPreferences.CreateCategory("Judgement");
-            judgementCategory.SetFilePath(SettingsPath, true, false);
-
-            _disableJudgement = judgementCategory.CreateEntry("DisableJudgement", false);
-            _disablePerfects = judgementCategory.CreateEntry("DisablePerfects", false);
-            _disableGreats = judgementCategory.CreateEntry("DisableGreats", false);
-            _disablePass = judgementCategory.CreateEntry("DisablePass", false);
-            _makeJudgementSmaller = judgementCategory.CreateEntry("MakeJudgementSmaller", false,
-                description: "DisableJudgement takes precedence.");
-            _scalePercentage = judgementCategory.CreateEntry("JudgementScalePercentage", 75,
-                description: "Range from 0-100%");
-
+            Category.LoadFromFile(false);
+            
             // Verify scale is within range
             var currentScale = ScalePercentage;
             _scalePercentage.Value = Math.Clamp(ScalePercentage, 0, 100);
