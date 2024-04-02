@@ -27,7 +27,7 @@ internal static partial class SettingsManager
             Category.SetFilePath(SettingsPath, false, false);
 
             _isEnabled = Category.CreateEntry("Enabled", true, description: "Enable or disable the mod!");
-            _disableAllEffects = Category.CreateEntry("DisableAllEfects", true,
+            _disableAllEffects = Category.CreateEntry("DisableAllEffects", true,
                 description: "Takes precedence to the following options.");
         }
 

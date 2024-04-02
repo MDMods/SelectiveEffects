@@ -30,8 +30,8 @@ internal static partial class SettingsManager
             Category = MelonPreferences.CreateCategory("Hit");
             Category.SetFilePath(SettingsPath, false, false);
 
-            _disableHitDissapearAnimations = Category.CreateEntry("DisableHitDissapearAnimations", false,
-                description: "Hit enemies disappear immediatly.");
+            _disableHitDissapearAnimations = Category.CreateEntry("DisableHitDisappearAnimations", false,
+                description: "Hit enemies disappear immediately.");
             _disableHitEffects = Category.CreateEntry("DisableHitEffects", false);
             _disableGirlFxAtk = Category.CreateEntry("DisableGirlHitFx", false);
             _disableGirlAtkParticles = Category.CreateEntry("DisableGirlHitParticlesOnly", false);

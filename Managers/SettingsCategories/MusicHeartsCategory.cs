@@ -23,7 +23,7 @@ internal static partial class SettingsManager
 
             _disableMusicNotesFx = Category.CreateEntry("DisableMusicNotesFx", false,
                 description: "Disable music notes points text.");
-            _disableHeartsFx = Category.CreateEntry("DisablHeartsFx", false,
+            _disableHeartsFx = Category.CreateEntry("DisableHeartsFx", false,
                 description: "Disable hearts health gain text.");
         }
 
