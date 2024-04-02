@@ -6,13 +6,11 @@ namespace SelectiveEffects;
 
 public sealed partial class Main : MelonMod
 {
-    internal static bool _isGameMain;
-    public static bool IsGameMain => _isGameMain;
+    private static bool _isGameMain;
+    internal static bool IsGameMain => _isGameMain;
 
     public override void OnInitializeMelon()
     {
-        SettingsManager.Load();
-        EffectsDisablerManager.Init();
         LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
     }
 
@@ -20,4 +18,18 @@ public sealed partial class Main : MelonMod
     {
         _isGameMain = sceneName.Equals("GameMain");
     }
+
+    internal static void Reload(object sender, FileSystemEventArgs e)
+    {
+        SettingsManager.Load();
+        EffectsDisablerManager.ReloadToggle();
+        EffectsDisablerManager.Load();
+        
+        Melon<Main>.Logger.Msg(EffectsDisablerManager.DisableEffectsList.Count);
+        
+        Melon<Main>.Logger.Msg("Reloaded successfully!");
+    }
+    /*
+     * TODO: Check hot reload, and maybe wrappers
+     */
 }

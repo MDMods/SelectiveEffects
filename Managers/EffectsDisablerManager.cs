@@ -5,26 +5,33 @@ using SelectiveEffects.Models.EffectsCondition.JudgementCategory;
 using SelectiveEffects.Models.EffectsCondition.MiscCategory;
 using SelectiveEffects.Models.EffectsCondition.MusicHeartsCategory;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SelectiveEffects.Managers;
 
-using static SettingsManager;
-
 internal static partial class EffectsDisablerManager
 {
+    static EffectsDisablerManager()
+    {
+        Load();
+    }
+
     [PnlMenuToggle("EffectsToggleObject", "Disable Effects", nameof(SettingsManager.IsEnabled))]
     private static GameObject DisableEffectsToggle { get; set; }
 
-    
+
     internal static Dictionary<string, Action<GameObject>> DisabledEffectsUids =>
         EffectsBaseCondition.DisabledEffectsUids;
 
     internal static List<EffectsBaseCondition> DisableEffectsList => EffectsBaseCondition.DisableEffectsList;
     internal static bool DisableAnyEffect => DisableEffectsList.Count > 0;
 
-    internal static void Init()
+    internal static void Load()
     {
-        if (DisableAllEffects) return;
+        DisableEffectsList.Clear();
+        DisabledEffectsUids.Clear();
+        
+        if (SettingsManager.DisableAllEffects) return;
 
         Perfects.Instance.CheckAndAddInstance();
         Greats.Instance.CheckAndAddInstance();
@@ -44,5 +51,11 @@ internal static partial class EffectsDisablerManager
         ElfinFx.Instance.CheckAndAddInstance();
         DustFx.Instance.CheckAndAddInstance();
         HurtFx.Instance.CheckAndAddInstance();
+    }
+
+    internal static void ReloadToggle()
+    {
+        if (!DisableEffectsToggle) return;
+        DisableEffectsToggle.GetComponent<Toggle>().SetIsOnWithoutNotify(SettingsManager.IsEnabled);
     }
 }
