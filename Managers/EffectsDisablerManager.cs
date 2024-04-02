@@ -33,20 +33,23 @@ internal static partial class EffectsDisablerManager
 
         if (SettingsManager.DisableAllEffects) return;
 
+        // JudgementCategory
         Perfects.Instance.CheckAndAddInstance();
         Greats.Instance.CheckAndAddInstance();
         Pass.Instance.CheckAndAddInstance();
         JudgementSize.Instance.CheckAndAddInstance();
 
+        // HitCategory
         GirlFxAtk.Instance.CheckAndAddInstance();
         PressFx.Instance.CheckAndAddInstance();
 
+        // MusicHeartsCategory
         MusicNotesFx.Instance.CheckAndAddInstance();
         MusicNotesText.Instance.CheckAndAddInstance();
-
         HeartsFx.Instance.CheckAndAddInstance();
         HeartsText.Instance.CheckAndAddInstance();
 
+        // MiscCategory
         BossFx.Instance.CheckAndAddInstance();
         ElfinFx.Instance.CheckAndAddInstance();
         DustFx.Instance.CheckAndAddInstance();
