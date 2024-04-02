@@ -32,7 +32,7 @@ internal static class MainEffectsPatch
             return;
         }
 
-        if (!EffectsDisablerManager.DisabledEffectsUids.TryGetValue(__instance.uid, out var function)) return;
-        function(__result);
+        if (!EffectsDisablerManager.DisabledEffectsUids.TryGetValue(__instance.uid, out var objectAction)) return;
+        objectAction(__result);
     }
 }
