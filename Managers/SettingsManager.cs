@@ -1,4 +1,5 @@
-﻿using MelonLoader.Utils;
+﻿using MelonLoader;
+using MelonLoader.Utils;
 using SelectiveEffects.Properties;
 
 namespace SelectiveEffects.Managers;
@@ -13,6 +14,9 @@ internal static partial class SettingsManager
     static SettingsManager()
     {
         Load();
+
+        // Create file at runtime if it doesn't exists
+        MelonPreferences.Save();
 
         Watcher.NotifyFilter = NotifyFilters.LastWrite
                                | NotifyFilters.Size;
