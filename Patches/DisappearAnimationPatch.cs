@@ -20,8 +20,8 @@ internal static class DisappearAnimationPatch
 
         if (SettingsManager.DisableHitEffects)
         {
-            var out_fx = __instance.transform.FindChild("out_fx")?.gameObject;
-            if (out_fx) Object.Destroy(out_fx);
+            var outFX = __instance.transform.FindChild("out_fx")?.gameObject;
+            if (outFX) Object.Destroy(outFX);
         }
 
         if (!SettingsManager.DisableHitDisappearAnimations) return;
