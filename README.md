@@ -40,3 +40,5 @@ It is prefered to use the `DisableAllEfects` option instead of the individual op
 ## In-game screenshots
 ### Menu Toggle
 ![MenuToggle](Media/MenuToggle.jpg)
+
+##  ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
