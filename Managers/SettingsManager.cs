@@ -22,9 +22,13 @@ internal static partial class SettingsManager
                                | NotifyFilters.Size;
 
         Watcher.Filter = SettingsFileName;
-        Watcher.EnableRaisingEvents = true;
 
         Watcher.Changed += Main.QueueReload;
+    }
+
+    internal static void EnableWatcherEvents()
+    {
+        Watcher.EnableRaisingEvents = true;
     }
 
     internal static void Load()

@@ -28,6 +28,11 @@ public sealed partial class Main : MelonMod
         ReloadEvent?.Invoke();
     }
 
+    public override void OnLateInitializeMelon()
+    {
+        SettingsManager.EnableWatcherEvents();
+    }
+
     internal static void QueueReload(object sender, FileSystemEventArgs e)
     {
         if (!IsGameMain)
