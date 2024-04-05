@@ -13,21 +13,24 @@ public sealed partial class Main : MelonMod
     {
         LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
     }
-
+    
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
         IsGameMain = string.Equals(sceneName, "GameMain");
 
+        // Reload if needed outside of GameMain
         if (IsGameMain) return;
         ReloadEvent?.Invoke();
         ReloadEvent = null;
     }
-
+    
+    // Reload if needed before quitting to save the current settings
     public override void OnApplicationQuit()
     {
         ReloadEvent?.Invoke();
     }
 
+    // Late initialization of the file watcher
     public override void OnLateInitializeMelon()
     {
         SettingsManager.EnableWatcherEvents();
