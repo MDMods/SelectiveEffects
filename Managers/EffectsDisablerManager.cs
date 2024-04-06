@@ -59,6 +59,10 @@ internal static partial class EffectsDisablerManager
     internal static void ReloadToggle()
     {
         if (!DisableEffectsToggle) return;
-        DisableEffectsToggle.GetComponent<Toggle>().SetIsOnWithoutNotify(SettingsManager.IsEnabled);
+        
+        var toggleComp = DisableEffectsToggle.GetComponent<Toggle>();
+        if (!toggleComp) return;
+        
+        toggleComp.Set(SettingsManager.IsEnabled);
     }
 }
