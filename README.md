@@ -2,7 +2,7 @@
 
 Mod that allows disabling battle effects.
 
-* **Please take a look at [Installation](#installation).
+* **Please take a look at [installation](#installation)**.
 
 ## Features
 
