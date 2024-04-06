@@ -2,10 +2,20 @@
 
 Mod that allows disabling battle effects.
 
+* **Please take a look at [Installation](#installation).
+
 ## Features
 
 * Individual config options for several effects.
 * Enable/disable toggle at the menu.
+* Hot reload settings.
+
+### Hot Reload
+
+Reload your settings without having to restart the game.
+
+* Change the settings inside `SelectiveEffects.cfg` (see [Settings](#settings)) and the save the file.
+* The settings will reload only outside the charts.
 
 ## Settings
 
@@ -63,5 +73,18 @@ effects since they are handled in a different way).
 ### Menu Toggle
 
 ![MenuToggle](Media/MenuToggle.jpg)
+
+## Installation
+
+### Prerequisites
+
+* Make sure you have `MelonLoader 0.6.1` or higher installed and working on your Muse Dash.
+* [MuseDashMirror 3.1.3](https://github.com/MDMods/MuseDashMirror/releases/latest) or higher
+
+### Steps
+
+1. Download the latest release from [releases](https://github.com/MDMods/SelectiveEffects/releases/latest).
+2. Move `SelectiveEffects.dll` to `${Your muse dash folder}/Mods`.
+3. Run the game and modify the settings on the config file.
 
 ## ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
