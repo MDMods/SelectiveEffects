@@ -1,4 +1,5 @@
 ﻿using MelonLoader;
+using MuseDashMirror;
 using SelectiveEffects.Managers;
 using SelectiveEffects.Properties;
 
@@ -6,7 +7,6 @@ namespace SelectiveEffects;
 
 public sealed partial class Main : MelonMod
 {
-    internal static bool IsGameMain { get; private set; }
     private static event Action ReloadEvent;
 
     public override void OnInitializeMelon()
@@ -16,10 +16,8 @@ public sealed partial class Main : MelonMod
     
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
-        IsGameMain = string.Equals(sceneName, "GameMain");
-
         // Reload if needed outside of GameMain
-        if (IsGameMain) return;
+        if (SceneInfo.IsGameScene) return;
         ReloadEvent?.Invoke();
         ReloadEvent = null;
     }
@@ -38,7 +36,7 @@ public sealed partial class Main : MelonMod
 
     internal static void QueueReload(object sender, FileSystemEventArgs e)
     {
-        if (!IsGameMain)
+        if (!SceneInfo.IsGameScene)
         {
             Reload();
             return;

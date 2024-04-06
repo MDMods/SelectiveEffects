@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Il2CppAssets.Scripts.PeroTools.Managers;
+using MuseDashMirror;
 using SelectiveEffects.Managers;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ internal static class MainEffectsPatch
     [HarmonyPostfix]
     internal static void InitPostfix(Effect __instance)
     {
-        if (!Main.IsGameMain) return;
+        if (!SceneInfo.IsGameScene) return;
 
         if (SettingsManager.DisableAllEffects) return;
 
