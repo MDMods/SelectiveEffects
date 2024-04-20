@@ -25,7 +25,9 @@ public sealed partial class Main : MelonMod
     // Reload if needed before quitting to save the current settings
     public override void OnApplicationQuit()
     {
+        SettingsManager.DisableWatcherEvents();
         ReloadEvent?.Invoke();
+        base.OnApplicationQuit();
     }
 
     // Late initialization of the file watcher

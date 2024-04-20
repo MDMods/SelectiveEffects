@@ -30,6 +30,11 @@ internal static partial class SettingsManager
     {
         Watcher.EnableRaisingEvents = true;
     }
+    
+    internal static void DisableWatcherEvents()
+    {
+        Watcher.EnableRaisingEvents = false;
+    }
 
     internal static void Load()
     {
