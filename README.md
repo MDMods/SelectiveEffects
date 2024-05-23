@@ -4,6 +4,8 @@ Mod that allows disabling battle effects.
 
 * **Please take a look at [installation](#installation)**.
 
+## ❗Check out my other [mods](https://github.com/Asgragrt/AsgraMDMods/blob/main/README.md)❗
+
 ## Features
 
 * Individual config options for several effects.
@@ -86,5 +88,3 @@ effects since they are handled in a different way).
 1. Download the latest release from [releases](https://github.com/MDMods/SelectiveEffects/releases/latest).
 2. Move `SelectiveEffects.dll` to `${Your muse dash folder}/Mods`.
 3. Run the game and modify the settings on the config file.
-
-## ❗Check out my other [mods](https://github.com/Asgragrt#musedash-modding)❗
