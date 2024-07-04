@@ -31,4 +31,9 @@ internal class FeverCategory : ICategory
     {
         Category.LoadFromFile(false);
     }
+
+    void ICategory.Save()
+    {
+        Category.SaveToFile(false);
+    }
 }

@@ -37,4 +37,9 @@ internal class MainCategory : ICategory
     {
         Category.LoadFromFile(false);
     }
+
+    void ICategory.Save()
+    {
+        Category.SaveToFile(false);
+    }
 }

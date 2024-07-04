@@ -21,7 +21,13 @@ internal static partial class SettingsManager
         Load();
 
         // Create file at runtime if it doesn't exists
-        MelonPreferences.Save();
+        var settingsPath = Path.Join(MelonEnvironment.UserDataDirectory, SettingsFileName);
+        if (!File.Exists(settingsPath))
+        {
+            Save();
+            Melon<Main>.Logger.Msg("Created Settings file successfully!");
+            // MelonPreferences.Save();
+        }
 
         Watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size;
 
@@ -64,6 +70,11 @@ internal static partial class SettingsManager
         //StageCategory.Init();
 
         _categories.ForEach(c => c.Load());
+    }
+
+    internal static void Save()
+    {
+        _categories.ForEach(c => c.Save());
     }
 
     private static void Init()

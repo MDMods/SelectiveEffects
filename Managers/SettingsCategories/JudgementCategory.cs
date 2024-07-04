@@ -57,4 +57,9 @@ internal class JudgementCategory : ICategory
             return;
         Melon<Main>.Logger.Warning("JudgementScalePercentage is out of bounds!");
     }
+
+    void ICategory.Save()
+    {
+        Category.SaveToFile(false);
+    }
 }

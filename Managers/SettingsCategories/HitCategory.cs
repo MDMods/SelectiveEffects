@@ -39,4 +39,9 @@ internal class HitCategory : ICategory
     {
         Category.LoadFromFile(false);
     }
+
+    void ICategory.Save()
+    {
+        Category.SaveToFile(false);
+    }
 }
