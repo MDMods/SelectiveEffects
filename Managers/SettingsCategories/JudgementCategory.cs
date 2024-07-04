@@ -2,9 +2,8 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class JudgementCategory : ICategory
+internal class JudgementCategory : Category
 {
-    private readonly MelonPreferences_Category Category;
     private readonly MelonPreferences_Entry<bool> _disableGreats;
     private readonly MelonPreferences_Entry<bool> _disableJudgement;
     private readonly MelonPreferences_Entry<bool> _disablePass;
@@ -14,21 +13,19 @@ internal class JudgementCategory : ICategory
     private readonly MelonPreferences_Entry<int> _scalePercentage;
 
     public JudgementCategory()
+        : base("Judgement")
     {
-        Category = MelonPreferences.CreateCategory("Judgement");
-        Category.SetFilePath(SettingsManager.SettingsPath, false, false);
-
-        _disableJudgement = Category.CreateEntry("DisableJudgement", false);
-        _disablePerfects = Category.CreateEntry("DisablePerfects", false);
-        _disableGreats = Category.CreateEntry("DisableGreats", false);
-        _disablePass = Category.CreateEntry("DisablePass", false);
-        _disablePerfectPerfects = Category.CreateEntry("DisablePerfectPerfects", false);
-        _makeJudgementSmaller = Category.CreateEntry(
+        _disableJudgement = _category.CreateEntry("DisableJudgement", false);
+        _disablePerfects = _category.CreateEntry("DisablePerfects", false);
+        _disableGreats = _category.CreateEntry("DisableGreats", false);
+        _disablePass = _category.CreateEntry("DisablePass", false);
+        _disablePerfectPerfects = _category.CreateEntry("DisablePerfectPerfects", false);
+        _makeJudgementSmaller = _category.CreateEntry(
             "MakeJudgementSmaller",
             false,
             description: "DisableJudgement takes precedence."
         );
-        _scalePercentage = Category.CreateEntry(
+        _scalePercentage = _category.CreateEntry(
             "JudgementScalePercentage",
             75,
             description: "Range from 0-100%"
@@ -46,9 +43,9 @@ internal class JudgementCategory : ICategory
     internal bool MakeJudgementSmaller => _makeJudgementSmaller.Value;
     internal int ScalePercentage => _scalePercentage.Value;
 
-    void ICategory.Load()
+    public override void Load()
     {
-        Category.LoadFromFile(false);
+        base.Load();
 
         // Verify scale is within range
         var currentScale = ScalePercentage;
@@ -56,10 +53,5 @@ internal class JudgementCategory : ICategory
         if (currentScale == ScalePercentage)
             return;
         Melon<Main>.Logger.Warning("JudgementScalePercentage is out of bounds!");
-    }
-
-    void ICategory.Save()
-    {
-        Category.SaveToFile(false);
     }
 }

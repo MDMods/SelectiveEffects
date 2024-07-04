@@ -2,23 +2,20 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class MusicHeartsCategory : ICategory
+internal class MusicHeartsCategory : Category
 {
-    private readonly MelonPreferences_Category Category;
     private readonly MelonPreferences_Entry<bool> _disableHeartsFx;
     private readonly MelonPreferences_Entry<bool> _disableMusicNotesFx;
 
     public MusicHeartsCategory()
+        : base("MusicHearts")
     {
-        Category = MelonPreferences.CreateCategory("MusicHearts");
-        Category.SetFilePath(SettingsManager.SettingsPath, false, false);
-
-        _disableMusicNotesFx = Category.CreateEntry(
+        _disableMusicNotesFx = _category.CreateEntry(
             "DisableMusicNotesFx",
             false,
             description: "Disable music notes points text."
         );
-        _disableHeartsFx = Category.CreateEntry(
+        _disableHeartsFx = _category.CreateEntry(
             "DisableHeartsFx",
             false,
             description: "Disable hearts health gain text."
@@ -27,14 +24,4 @@ internal class MusicHeartsCategory : ICategory
 
     internal bool DisableHeartsFx => _disableHeartsFx.Value;
     internal bool DisableMusicNotesFx => _disableMusicNotesFx.Value;
-
-    void ICategory.Load()
-    {
-        Category.LoadFromFile(false);
-    }
-
-    void ICategory.Save()
-    {
-        Category.SaveToFile(false);
-    }
 }

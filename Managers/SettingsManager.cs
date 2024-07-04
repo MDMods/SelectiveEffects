@@ -61,14 +61,6 @@ internal static partial class SettingsManager
 
     internal static void Load()
     {
-        // MainCategory.Init();
-        //FeverCategory.Init();
-        // JudgementCategory.Init();
-        //HitCategory.Init();
-        // MusicHeartsCategory.Init();
-        // MiscCategory.Init();
-        //StageCategory.Init();
-
         _categories.ForEach(c => c.Load());
     }
 

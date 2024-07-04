@@ -2,23 +2,20 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class MiscCategory : ICategory
+internal class MiscCategory : Category
 {
-    private readonly MelonPreferences_Category Category;
     private readonly MelonPreferences_Entry<bool> _disableBossFx;
     private readonly MelonPreferences_Entry<bool> _disableDustFx;
     private readonly MelonPreferences_Entry<bool> _disableElfinFx;
     private readonly MelonPreferences_Entry<bool> _disableHurtFx;
 
     public MiscCategory()
+        : base("Misc")
     {
-        Category = MelonPreferences.CreateCategory("Misc");
-        Category.SetFilePath(SettingsManager.SettingsPath, false, false);
-
-        _disableBossFx = Category.CreateEntry("DisableBossFx", false);
-        _disableElfinFx = Category.CreateEntry("DisableElfinFx", false);
-        _disableDustFx = Category.CreateEntry("DisableDustFx", false);
-        _disableHurtFx = Category.CreateEntry(
+        _disableBossFx = _category.CreateEntry("DisableBossFx", false);
+        _disableElfinFx = _category.CreateEntry("DisableElfinFx", false);
+        _disableDustFx = _category.CreateEntry("DisableDustFx", false);
+        _disableHurtFx = _category.CreateEntry(
             "DisableHurtFx",
             false,
             description: "Disable hp loss text."
@@ -29,14 +26,4 @@ internal class MiscCategory : ICategory
     internal bool DisableDustFx => _disableDustFx.Value;
     internal bool DisableElfinFx => _disableElfinFx.Value;
     internal bool DisableHurtFx => _disableHurtFx.Value;
-
-    void ICategory.Load()
-    {
-        Category.LoadFromFile(false);
-    }
-
-    void ICategory.Save()
-    {
-        Category.SaveToFile(false);
-    }
 }

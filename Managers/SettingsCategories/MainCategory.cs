@@ -2,23 +2,20 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class MainCategory : ICategory
+internal class MainCategory : Category
 {
-    private readonly MelonPreferences_Category Category;
     private readonly MelonPreferences_Entry<bool> _disableAllEffects;
     private readonly MelonPreferences_Entry<bool> _isEnabled;
 
     public MainCategory()
+        : base("Main")
     {
-        Category = MelonPreferences.CreateCategory("Main");
-        Category.SetFilePath(SettingsManager.SettingsPath, false, false);
-
-        _isEnabled = Category.CreateEntry(
+        _isEnabled = _category.CreateEntry(
             "Enabled",
             true,
             description: "Enable or disable the mod!"
         );
-        _disableAllEffects = Category.CreateEntry(
+        _disableAllEffects = _category.CreateEntry(
             "DisableAllEffects",
             true,
             description: "Takes precedence to the following options."
@@ -31,15 +28,5 @@ internal class MainCategory : ICategory
     {
         get => _isEnabled.Value;
         set => _isEnabled.Value = value;
-    }
-
-    void ICategory.Load()
-    {
-        Category.LoadFromFile(false);
-    }
-
-    void ICategory.Save()
-    {
-        Category.SaveToFile(false);
     }
 }
