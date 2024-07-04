@@ -4,8 +4,6 @@ namespace SelectiveEffects.Managers;
 
 internal class StageCategory : Category
 {
-    private readonly MelonPreferences_Entry<bool> _disableElfin;
-    private readonly MelonPreferences_Entry<bool> _disableGirl;
     private readonly MelonPreferences_Entry<bool> _disableStageBackground;
     private readonly MelonPreferences_Entry<bool> _disableStageExceptFloor;
 
@@ -25,8 +23,6 @@ internal class StageCategory : Category
         );
     }
 
-    internal bool DisableElfin => _disableElfin.Value;
-    internal bool DisableGirl => _disableGirl.Value;
     internal bool DisableStage => DisableStageBackGround || DisableStageExceptFloor;
     internal bool DisableStageBackGround => _disableStageBackground.Value;
     internal bool DisableStageExceptFloor => _disableStageExceptFloor.Value;
