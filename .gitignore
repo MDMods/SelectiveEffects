@@ -1,4 +1,8 @@
+# Editor specifics
 .vs
+.idea
+.vscode
+
+# Project specifics
 bin
 obj
-.idea
