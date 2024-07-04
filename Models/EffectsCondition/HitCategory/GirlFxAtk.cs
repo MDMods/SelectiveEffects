@@ -5,14 +5,18 @@ namespace SelectiveEffects.Models.EffectsCondition.HitCategory;
 
 internal class GirlFxAtk : EffectsBaseCondition
 {
-    private GirlFxAtk()
-    {
-    }
-
-    protected override bool SettingsValue =>
-        SettingsManager.DisableGirlFxAtk || SettingsManager.DisableGirlAtkParticles;
+    private GirlFxAtk() { }
 
     internal static GirlFxAtk Instance { get; } = new();
+
+    protected override bool SettingsValue
+    {
+        get
+        {
+            var hitCategory = SettingsManager.Get<Managers.HitCategory>();
+            return hitCategory.DisableGirlFxAtk || hitCategory.DisableGirlAtkParticles;
+        }
+    }
 
     protected override bool Condition(string s)
     {
@@ -21,14 +25,15 @@ internal class GirlFxAtk : EffectsBaseCondition
 
     protected override void FoundAction(GameObject go)
     {
-        if (SettingsManager.DisableGirlFxAtk)
+        if (SettingsManager.Get<Managers.HitCategory>().DisableGirlFxAtk)
         {
             base.FoundAction(go);
             return;
         }
 
         var starParticles = go.transform.Find("fx_star");
-        if (starParticles is null) return;
+        if (starParticles is null)
+            return;
         starParticles.gameObject.SetActive(false);
     }
 }

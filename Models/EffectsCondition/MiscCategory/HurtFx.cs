@@ -4,13 +4,12 @@ namespace SelectiveEffects.Models.EffectsCondition.MiscCategory;
 
 internal class HurtFx : EffectsBaseCondition
 {
-    private HurtFx()
-    {
-    }
-
-    protected override bool SettingsValue => SettingsManager.DisableHurtFx;
+    private HurtFx() { }
 
     internal static HurtFx Instance { get; } = new();
+
+    protected override bool SettingsValue =>
+        SettingsManager.Get<Managers.MiscCategory>().DisableHurtFx;
 
     protected override bool Condition(string s)
     {

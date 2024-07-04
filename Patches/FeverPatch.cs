@@ -12,34 +12,40 @@ internal static class FeverPatch
     [HarmonyPostfix]
     internal static void ActivateFeverPostfix(FeverEffectManager __instance)
     {
-        if (GlobalDataBase.s_DbTouhou.isBadApple
-            || !SettingsManager.IsEnabled) return;
+        if (GlobalDataBase.s_DbTouhou.isBadApple || !SettingsManager.Get<MainCategory>().IsEnabled)
+            return;
 
-        if (SettingsManager.DisableFever)
+        var feverCategory = SettingsManager.Get<FeverCategory>();
+
+        if (feverCategory.DisableFever)
         {
             __instance.gameObject.SetActive(false);
             return;
         }
 
-        if (SettingsManager.DisableBG)
+        if (feverCategory.DisableBG)
             // This option makes it work just as ballcock
             __instance.m_Background.SetActive(false);
 
-        if (!SettingsManager.DisableStars) return;
+        if (!feverCategory.DisableStars)
+            return;
 
-
-        foreach (var go in __instance.m_Particles) go.SetActive(false);
+        foreach (var go in __instance.m_Particles)
+            go.SetActive(false);
     }
-
 
     [HarmonyPatch(nameof(FeverEffectManager.CancelFeverEffect))]
     [HarmonyPrefix]
     internal static bool CancelFeverEffectPrefix(FeverEffectManager __instance)
     {
-        if (GlobalDataBase.s_DbTouhou.isBadApple
-            || !SettingsManager.IsEnabled
-            || SettingsManager.DisableFever
-            || !SettingsManager.DisableTransition) return true;
+        var feverCategory = SettingsManager.Get<FeverCategory>();
+        if (
+            GlobalDataBase.s_DbTouhou.isBadApple
+            || !SettingsManager.Get<MainCategory>().IsEnabled
+            || feverCategory.DisableFever
+            || !feverCategory.DisableTransition
+        )
+            return true;
 
         __instance.m_IsActivatedComeOut = true;
         __instance.gameObject.SetActive(false);

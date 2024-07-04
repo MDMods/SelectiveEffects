@@ -9,31 +9,42 @@ namespace SelectiveEffects.Patches;
 [HarmonyPatch(typeof(Effect))]
 internal static class MainEffectsPatch
 {
-    [HarmonyPatch(nameof(Effect.Init))]
-    [HarmonyPostfix]
-    internal static void InitPostfix(Effect __instance)
-    {
-        if (!SceneInfo.IsGameScene) return;
-
-        if (SettingsManager.DisableAllEffects) return;
-
-        EffectsDisablerManager.DisableEffectsList.ForEach(effectObject =>
-            effectObject.CheckConditionAndAddUid(__instance.uid));
-    }
-
     [HarmonyPatch(nameof(Effect.CreateInstance))]
     [HarmonyPostfix]
     internal static void CreateInstancePostfix(Effect __instance, ref GameObject __result)
     {
-        if (!SettingsManager.IsEnabled) return;
+        var mainCategory = SettingsManager.Get<MainCategory>();
+        if (!mainCategory.IsEnabled)
+            return;
 
-        if (SettingsManager.DisableAllEffects)
+        if (mainCategory.DisableAllEffects)
         {
             __result.SetActive(false);
             return;
         }
 
-        if (!EffectsDisablerManager.DisabledEffectsUids.TryGetValue(__instance.uid, out var objectAction)) return;
+        if (
+            !EffectsDisablerManager.DisabledEffectsUids.TryGetValue(
+                __instance.uid,
+                out var objectAction
+            )
+        )
+            return;
         objectAction(__result);
+    }
+
+    [HarmonyPatch(nameof(Effect.Init))]
+    [HarmonyPostfix]
+    internal static void InitPostfix(Effect __instance)
+    {
+        if (!SceneInfo.IsGameScene)
+            return;
+
+        if (SettingsManager.Get<MainCategory>().DisableAllEffects)
+            return;
+
+        EffectsDisablerManager.DisableEffectsList.ForEach(effectObject =>
+            effectObject.CheckConditionAndAddUid(__instance.uid)
+        );
     }
 }

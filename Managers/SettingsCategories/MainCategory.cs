@@ -2,38 +2,39 @@
 
 namespace SelectiveEffects.Managers;
 
-internal static partial class SettingsManager
+internal class MainCategory : ICategory
 {
-    //--------------------------------------------------------------------+
-    // Main Category
-    //--------------------------------------------------------------------+
-    internal static bool DisableAllEffects => MainCategory._disableAllEffects.Value;
+    private readonly MelonPreferences_Category Category;
+    private readonly MelonPreferences_Entry<bool> _disableAllEffects;
+    private readonly MelonPreferences_Entry<bool> _isEnabled;
 
-    internal static bool IsEnabled
+    public MainCategory()
     {
-        get => MainCategory._isEnabled.Value;
-        set => MainCategory._isEnabled.Value = value;
+        Category = MelonPreferences.CreateCategory("Main");
+        Category.SetFilePath(SettingsManager.SettingsPath, false, false);
+
+        _isEnabled = Category.CreateEntry(
+            "Enabled",
+            true,
+            description: "Enable or disable the mod!"
+        );
+        _disableAllEffects = Category.CreateEntry(
+            "DisableAllEffects",
+            true,
+            description: "Takes precedence to the following options."
+        );
     }
 
-    private static class MainCategory
+    internal bool DisableAllEffects => _disableAllEffects.Value;
+
+    internal bool IsEnabled
     {
-        private static readonly MelonPreferences_Category Category;
-        internal static readonly MelonPreferences_Entry<bool> _disableAllEffects;
-        internal static readonly MelonPreferences_Entry<bool> _isEnabled;
+        get => _isEnabled.Value;
+        set => _isEnabled.Value = value;
+    }
 
-        static MainCategory()
-        {
-            Category = MelonPreferences.CreateCategory("Main");
-            Category.SetFilePath(SettingsPath, false, false);
-
-            _isEnabled = Category.CreateEntry("Enabled", true, description: "Enable or disable the mod!");
-            _disableAllEffects = Category.CreateEntry("DisableAllEffects", true,
-                description: "Takes precedence to the following options.");
-        }
-
-        internal static void Init()
-        {
-            Category.LoadFromFile(false);
-        }
+    void ICategory.Load()
+    {
+        Category.LoadFromFile(false);
     }
 }

@@ -6,13 +6,12 @@ namespace SelectiveEffects.Models.EffectsCondition.JudgementCategory;
 // Unused
 internal class JudgementSize : EffectsBaseCondition
 {
-    private JudgementSize()
-    {
-    }
-
-    protected override bool SettingsValue => SettingsManager.MakeJudgementSmaller;
+    private JudgementSize() { }
 
     internal static JudgementSize Instance { get; } = new();
+
+    protected override bool SettingsValue =>
+        SettingsManager.Get<Managers.JudgementCategory>().MakeJudgementSmaller;
 
     protected override bool Condition(string s)
     {
@@ -23,7 +22,8 @@ internal class JudgementSize : EffectsBaseCondition
     {
         if (!go.name.Contains("Gold"))
         {
-            if (go.TryGetComponent(out JudgmentScaler _)) return;
+            if (go.TryGetComponent(out JudgmentScaler _))
+                return;
 
             go.AddComponent<JudgmentScaler>();
 
@@ -34,7 +34,8 @@ internal class JudgementSize : EffectsBaseCondition
         {
             var child = go.transform.GetChild(i);
 
-            if (child.TryGetComponent(out JudgmentScaler _)) return;
+            if (child.TryGetComponent(out JudgmentScaler _))
+                return;
             child.gameObject.AddComponent<JudgmentScaler>();
         }
     }

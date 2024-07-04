@@ -4,13 +4,12 @@ namespace SelectiveEffects.Models.EffectsCondition.HitCategory;
 
 internal class PressFx : EffectsBaseCondition
 {
-    private PressFx()
-    {
-    }
-
-    protected override bool SettingsValue => SettingsManager.DisablePressFx;
+    private PressFx() { }
 
     internal static PressFx Instance { get; } = new();
+
+    protected override bool SettingsValue =>
+        SettingsManager.Get<Managers.HitCategory>().DisablePressFx;
 
     protected override bool Condition(string s)
     {

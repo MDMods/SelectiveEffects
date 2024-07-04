@@ -2,41 +2,33 @@
 
 namespace SelectiveEffects.Managers;
 
-internal static partial class SettingsManager
+internal class FeverCategory : ICategory
 {
-    //--------------------------------------------------------------------+
-    // Fever Category
-    //--------------------------------------------------------------------+
-    internal static bool DisableFever => FeverCategory._disableFever.Value
-                                         || (DisableBG && DisableStars && DisableTransition);
+    private readonly MelonPreferences_Category Category;
+    private readonly MelonPreferences_Entry<bool> _disableBG;
+    private readonly MelonPreferences_Entry<bool> _disableFever;
+    private readonly MelonPreferences_Entry<bool> _disableStars;
+    private readonly MelonPreferences_Entry<bool> _disableTransition;
 
-    internal static bool DisableBG => FeverCategory._disableBG.Value;
-    internal static bool DisableStars => FeverCategory._disableStars.Value;
-    internal static bool DisableTransition => FeverCategory._disableTransition.Value;
-
-    private static class FeverCategory
+    public FeverCategory()
     {
-        private static readonly MelonPreferences_Category Category;
-        internal static readonly MelonPreferences_Entry<bool> _disableFever;
-        internal static readonly MelonPreferences_Entry<bool> _disableBG;
-        internal static readonly MelonPreferences_Entry<bool> _disableStars;
-        internal static readonly MelonPreferences_Entry<bool> _disableTransition;
+        Category = MelonPreferences.CreateCategory("Fever");
+        Category.SetFilePath(SettingsManager.SettingsPath, false, false);
 
-        static FeverCategory()
-        {
-            Category = MelonPreferences.CreateCategory("Fever");
-            Category.SetFilePath(SettingsPath, false, false);
+        _disableFever = Category.CreateEntry("DisableFever", false);
+        _disableBG = Category.CreateEntry("DisableBackground", false);
+        _disableStars = Category.CreateEntry("DisableStars", false);
+        _disableTransition = Category.CreateEntry("DisableTransition", false);
+    }
 
-            _disableFever = Category.CreateEntry("DisableFever", false);
-            _disableBG = Category.CreateEntry("DisableBackground", false);
-            _disableStars = Category.CreateEntry("DisableStars", false);
-            _disableTransition = Category.CreateEntry("DisableTransition", false);
-        }
+    internal bool DisableBG => _disableBG.Value;
+    internal bool DisableFever =>
+        _disableFever.Value || (DisableBG && DisableStars && DisableTransition);
+    internal bool DisableStars => _disableStars.Value;
+    internal bool DisableTransition => _disableTransition.Value;
 
-
-        internal static void Init()
-        {
-            Category.LoadFromFile(false);
-        }
+    void ICategory.Load()
+    {
+        Category.LoadFromFile(false);
     }
 }

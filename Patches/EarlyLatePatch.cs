@@ -12,11 +12,16 @@ internal static class EarlyLatePatch
 {
     internal static void Postfix(JudgeDisplay __instance)
     {
-        if (!SettingsManager.IsEnabled
-            || SettingsManager.DisableAllEffects
-            || SettingsManager.DisablePerfects
-            || !SettingsManager.DisablePerfectPerfects
-            || !Singleton<StageBattleComponent>.instance.isInGame) return;
+        var mainCategory = SettingsManager.Get<MainCategory>();
+        var judgementCategory = SettingsManager.Get<JudgementCategory>();
+        if (
+            !mainCategory.IsEnabled
+            || mainCategory.DisableAllEffects
+            || judgementCategory.DisablePerfects
+            || !judgementCategory.DisablePerfectPerfects
+            || !Singleton<StageBattleComponent>.instance.isInGame
+        )
+            return;
 
         __instance.gameObject.SetActive(BattleRoleAttributeComponent.instance.judgeState != 0);
     }

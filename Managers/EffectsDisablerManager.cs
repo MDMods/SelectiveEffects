@@ -16,22 +16,24 @@ internal static partial class EffectsDisablerManager
         Load();
     }
 
-    [PnlMenuToggle("EffectsToggleObject", "Disable Effects", nameof(SettingsManager.IsEnabled))]
-    private static GameObject DisableEffectsToggle { get; set; }
+    internal static bool DisableAnyEffect => DisableEffectsList.Count > 0;
 
+    internal static List<EffectsBaseCondition> DisableEffectsList =>
+        EffectsBaseCondition.DisableEffectsList;
+
+    //[PnlMenuToggle("EffectsToggleObject", "Disable Effects", nameof(SettingsManager.Get<MainCategory>().IsEnabled))]
+    //private static GameObject DisableEffectsToggle { get; set; }
 
     internal static Dictionary<string, Action<GameObject>> DisabledEffectsUids =>
         EffectsBaseCondition.DisabledEffectsUids;
-
-    internal static List<EffectsBaseCondition> DisableEffectsList => EffectsBaseCondition.DisableEffectsList;
-    internal static bool DisableAnyEffect => DisableEffectsList.Count > 0;
 
     internal static void Load()
     {
         DisableEffectsList.Clear();
         DisabledEffectsUids.Clear();
 
-        if (SettingsManager.DisableAllEffects) return;
+        if (SettingsManager.Get<MainCategory>().DisableAllEffects)
+            return;
 
         // JudgementCategory
         Perfects.Instance.CheckAndAddInstance();
@@ -58,11 +60,13 @@ internal static partial class EffectsDisablerManager
 
     internal static void ReloadToggle()
     {
-        if (!DisableEffectsToggle) return;
-        
-        var toggleComp = DisableEffectsToggle.GetComponent<Toggle>();
-        if (!toggleComp) return;
-        
-        toggleComp.Set(SettingsManager.IsEnabled);
+        // if (!DisableEffectsToggle)
+        //     return;
+
+        // var toggleComp = DisableEffectsToggle.GetComponent<Toggle>();
+        // if (!toggleComp)
+        //     return;
+
+        // toggleComp.Set(SettingsManager.IsEnabled);
     }
 }

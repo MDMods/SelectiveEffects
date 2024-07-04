@@ -4,13 +4,12 @@ namespace SelectiveEffects.Models.EffectsCondition.MiscCategory;
 
 internal class DustFx : EffectsBaseCondition
 {
-    private DustFx()
-    {
-    }
-
-    protected override bool SettingsValue => SettingsManager.DisableDustFx;
+    private DustFx() { }
 
     internal static DustFx Instance { get; } = new();
+
+    protected override bool SettingsValue =>
+        SettingsManager.Get<Managers.MiscCategory>().DisableDustFx;
 
     protected override bool Condition(string s)
     {

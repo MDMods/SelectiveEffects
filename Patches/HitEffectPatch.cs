@@ -9,9 +9,12 @@ internal static class HitEffectPatch
 {
     internal static void Postfix(AttackEffectManager __instance)
     {
-        if (!SettingsManager.IsEnabled) return;
+        if (
+            !SettingsManager.Get<MainCategory>().IsEnabled
+            || !SettingsManager.Get<HitCategory>().DisableHitEffects
+        )
+            return;
 
-        if (!SettingsManager.DisableHitEffects) return;
         __instance.m_PlayResult.SetActive(false);
     }
 }

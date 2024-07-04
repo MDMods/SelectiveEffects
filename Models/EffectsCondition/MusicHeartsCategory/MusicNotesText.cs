@@ -4,13 +4,12 @@ namespace SelectiveEffects.Models.EffectsCondition.MusicHeartsCategory;
 
 internal class MusicNotesText : EffectsBaseCondition
 {
-    private MusicNotesText()
-    {
-    }
-
-    protected override bool SettingsValue => SettingsManager.DisableMusicNotesFx;
+    private MusicNotesText() { }
 
     internal static MusicNotesText Instance { get; } = new();
+
+    protected override bool SettingsValue =>
+        SettingsManager.Get<Managers.MusicHeartsCategory>().DisableMusicNotesFx;
 
     protected override bool Condition(string s)
     {

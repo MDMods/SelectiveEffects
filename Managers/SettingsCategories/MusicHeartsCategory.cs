@@ -2,34 +2,34 @@
 
 namespace SelectiveEffects.Managers;
 
-internal static partial class SettingsManager
+internal class MusicHeartsCategory : ICategory
 {
-    //--------------------------------------------------------------------+
-    // Music notes & Hearts Category
-    //--------------------------------------------------------------------+
-    internal static bool DisableMusicNotesFx => MusicHeartsCategory._disableMusicNotesFx.Value;
-    internal static bool DisableHeartsFx => MusicHeartsCategory._disableHeartsFx.Value;
+    private readonly MelonPreferences_Category Category;
+    private readonly MelonPreferences_Entry<bool> _disableHeartsFx;
+    private readonly MelonPreferences_Entry<bool> _disableMusicNotesFx;
 
-    private static class MusicHeartsCategory
+    public MusicHeartsCategory()
     {
-        private static readonly MelonPreferences_Category Category;
-        internal static readonly MelonPreferences_Entry<bool> _disableMusicNotesFx;
-        internal static readonly MelonPreferences_Entry<bool> _disableHeartsFx;
+        Category = MelonPreferences.CreateCategory("MusicHearts");
+        Category.SetFilePath(SettingsManager.SettingsPath, false, false);
 
-        static MusicHeartsCategory()
-        {
-            Category = MelonPreferences.CreateCategory("MusicHearts");
-            Category.SetFilePath(SettingsPath, false, false);
+        _disableMusicNotesFx = Category.CreateEntry(
+            "DisableMusicNotesFx",
+            false,
+            description: "Disable music notes points text."
+        );
+        _disableHeartsFx = Category.CreateEntry(
+            "DisableHeartsFx",
+            false,
+            description: "Disable hearts health gain text."
+        );
+    }
 
-            _disableMusicNotesFx = Category.CreateEntry("DisableMusicNotesFx", false,
-                description: "Disable music notes points text.");
-            _disableHeartsFx = Category.CreateEntry("DisableHeartsFx", false,
-                description: "Disable hearts health gain text.");
-        }
+    internal bool DisableHeartsFx => _disableHeartsFx.Value;
+    internal bool DisableMusicNotesFx => _disableMusicNotesFx.Value;
 
-        internal static void Init()
-        {
-            Category.LoadFromFile(false);
-        }
+    void ICategory.Load()
+    {
+        Category.LoadFromFile(false);
     }
 }

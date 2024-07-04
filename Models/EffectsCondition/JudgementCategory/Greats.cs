@@ -4,13 +4,18 @@ namespace SelectiveEffects.Models.EffectsCondition.JudgementCategory;
 
 internal class Greats : EffectsBaseCondition
 {
-    private Greats()
-    {
-    }
-
-    protected override bool SettingsValue => SettingsManager.DisableGreats || SettingsManager.DisableJudgement;
+    private Greats() { }
 
     internal static Greats Instance { get; } = new();
+
+    protected override bool SettingsValue
+    {
+        get
+        {
+            var judgementCategory = SettingsManager.Get<Managers.JudgementCategory>();
+            return judgementCategory.DisableGreats || judgementCategory.DisableJudgement;
+        }
+    }
 
     protected override bool Condition(string s)
     {
