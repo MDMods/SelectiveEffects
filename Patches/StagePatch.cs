@@ -9,9 +9,6 @@ namespace SelectiveEffects.Patches;
 [HarmonyPatch(typeof(PnlBattle), nameof(PnlBattle.GameStart))]
 internal static class StagePatch
 {
-    public static bool InvariantContains(this string s1, string s2) =>
-        s1?.IndexOf(s2, StringComparison.InvariantCultureIgnoreCase) != -1;
-
     internal static void Postfix()
     {
         if (!SettingsManager.Get<MainCategory>().IsEnabled)

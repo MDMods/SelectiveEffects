@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using Il2CppAssets.Scripts.GameCore.GameObjectLogics.ExtraControl;
 using Il2CppSpine.Unity;
+using MelonLoader;
 using SelectiveEffects.Managers;
 
 namespace SelectiveEffects;
@@ -12,9 +14,8 @@ internal static class GameScenePatch
     [HarmonyPostfix]
     internal static void GirlInitPostfix(GirlActionController __instance)
     {
-        if (!SettingsManager.Get<GameScene>().DisableGirl)
+        if (!SettingsManager.Get<GameSceneCategory>().DisableGirl)
             return;
-        // ! Check SHADOW
         var girlSk = __instance.go?.GetComponent<SkeletonAnimation>();
         if (girlSk)
         {
@@ -26,5 +27,17 @@ internal static class GameScenePatch
         {
             ghostSk.skeleton.a = 0;
         }
+    }
+
+    [HarmonyPatch(typeof(RoleBattleSubControl), nameof(RoleBattleSubControl.Init))]
+    [HarmonyPostfix]
+    internal static void GirlShadowPostfix(RoleBattleSubControl __instance)
+    {
+        if (!SettingsManager.Get<GameSceneCategory>().DisableGirl)
+            return;
+        if (!__instance.name.InvariantContains("shadow"))
+            return;
+
+        __instance.gameObject.SetActive(false);
     }
 }
