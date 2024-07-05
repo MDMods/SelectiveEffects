@@ -1,5 +1,4 @@
-﻿using MelonLoader;
-using MelonLoader.Utils;
+﻿using MelonLoader.Utils;
 using SelectiveEffects.Properties;
 
 namespace SelectiveEffects.Managers;
@@ -12,7 +11,7 @@ internal static partial class SettingsManager
 
     private static readonly FileSystemWatcher Watcher = new(MelonEnvironment.UserDataDirectory);
 
-    private static List<ICategory> _categories = [];
+    private static readonly List<ICategory> _categories = [];
 
     static SettingsManager()
     {
@@ -20,14 +19,8 @@ internal static partial class SettingsManager
 
         Load();
 
-        // Create file at runtime if it doesn't exists
-        var settingsPath = Path.Join(MelonEnvironment.UserDataDirectory, SettingsFileName);
-        if (!File.Exists(settingsPath))
-        {
-            Save();
-            Melon<Main>.Logger.Msg("Created Settings file successfully!");
-            // MelonPreferences.Save();
-        }
+        // Create file at runtime if it doesn't exist or update the settings file with all the categories
+        Save();
 
         Watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size;
 
@@ -78,6 +71,7 @@ internal static partial class SettingsManager
         Init<MusicHeartsCategory>();
         Init<MiscCategory>();
         Init<StageCategory>();
+        Init<GameSceneCategory>();
     }
 
     private static void Init<T>()
