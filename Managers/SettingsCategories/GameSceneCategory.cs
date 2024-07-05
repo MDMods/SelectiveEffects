@@ -2,13 +2,13 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class GameScene : Category
+internal class GameSceneCategory : Category
 {
     private readonly MelonPreferences_Entry<bool> _disableElfin;
     private readonly MelonPreferences_Entry<bool> _disableGirl;
 
-    public GameScene()
-        : base("Stage")
+    public GameSceneCategory()
+        : base("GameScene")
     {
         _disableGirl = _category.CreateEntry(
             "DisableGirl",
