@@ -6,7 +6,7 @@ using Il2CppSpine.Unity;
 using MelonLoader;
 using SelectiveEffects.Managers;
 
-namespace SelectiveEffects;
+namespace SelectiveEffects.Patches;
 
 [HarmonyPatch]
 internal static class GameScenePatch
@@ -31,6 +31,8 @@ internal static class GameScenePatch
         if (!skMechanism)
             return;
 
+        // ! Fix for neonEgg
+        // ? Check NeonEggIncubationHandle
         skMechanism.skeleton.a = 0;
     }
 
@@ -70,6 +72,9 @@ internal static class GameScenePatch
         if (!__instance.name.InvariantContains("shadow"))
             return;
 
-        __instance.gameObject.SetActive(false);
+        var skAnim = __instance.m_SkAnimator;
+        if (!skAnim)
+            return;
+        skAnim.skeleton.a = 0;
     }
 }
