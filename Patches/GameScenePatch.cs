@@ -3,8 +3,8 @@ using Il2Cpp;
 using Il2CppAssets.Scripts.GameCore.GameObjectLogics.ExtraControl;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using Il2CppSpine.Unity;
-using MelonLoader;
 using SelectiveEffects.Managers;
+using UnityEngine;
 
 namespace SelectiveEffects.Patches;
 
@@ -76,5 +76,38 @@ internal static class GameScenePatch
         if (!skAnim)
             return;
         skAnim.skeleton.a = 0;
+    }
+
+    [HarmonyPatch(typeof(NeonEggIncubationHandle), nameof(NeonEggIncubationHandle.OnDestroy))]
+    [HarmonyPostfix]
+    internal static void NeonEggPostfix(NeonEggIncubationHandle __instance)
+    {
+        if (
+            !SettingsManager.Get<MainCategory>().IsEnabled
+            || !SettingsManager.Get<GameSceneCategory>().DisableElfin
+        )
+            return;
+
+        var go = __instance.gameObject.transform.parent;
+
+        // Search for the new elfin transform
+        Transform newElfin = null;
+        for (var i = 0; i < go.childCount; i++)
+        {
+            var child = go.GetChild(i);
+            if (!child.name.InvariantContains("egg"))
+            {
+                newElfin = child;
+                break;
+            }
+        }
+
+        if (newElfin == null)
+            return;
+
+        if (!newElfin.TryGetComponent(out SkeletonMecanim skMecanim))
+            return;
+
+        skMecanim.skeleton.a = 0;
     }
 }
