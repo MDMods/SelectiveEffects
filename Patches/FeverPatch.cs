@@ -12,10 +12,13 @@ internal static class FeverPatch
     [HarmonyPostfix]
     internal static void ActivateFeverPostfix(FeverEffectManager __instance)
     {
-        if (GlobalDataBase.s_DbTouhou.isBadApple || !SettingsManager.Get<MainCategory>().IsEnabled)
+        if (
+            GlobalDataBase.s_DbTouhou.isBadApple
+            || !SettingsManager.Get<Managers.MainCategory>().IsEnabled
+        )
             return;
 
-        var feverCategory = SettingsManager.Get<FeverCategory>();
+        var feverCategory = SettingsManager.Get<Fever>();
 
         if (feverCategory.DisableFever)
         {
@@ -38,10 +41,10 @@ internal static class FeverPatch
     [HarmonyPrefix]
     internal static bool CancelFeverEffectPrefix(FeverEffectManager __instance)
     {
-        var feverCategory = SettingsManager.Get<FeverCategory>();
+        var feverCategory = SettingsManager.Get<Fever>();
         if (
             GlobalDataBase.s_DbTouhou.isBadApple
-            || !SettingsManager.Get<MainCategory>().IsEnabled
+            || !SettingsManager.Get<Managers.MainCategory>().IsEnabled
             || feverCategory.DisableFever
             || !feverCategory.DisableTransition
         )

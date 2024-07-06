@@ -13,8 +13,8 @@ internal class JudgmentScaler : MonoBehaviour
     public void Awake()
     {
         if (
-            SettingsManager.Get<MainCategory>().IsEnabled
-            || SettingsManager.Get<JudgementCategory>().MakeJudgementSmaller
+            SettingsManager.Get<Managers.MainCategory>().IsEnabled
+            || SettingsManager.Get<Judgement>().MakeJudgementSmaller
         )
             return;
 
@@ -23,7 +23,6 @@ internal class JudgmentScaler : MonoBehaviour
 
     public void LateUpdate()
     {
-        transform.localScale *=
-            (float)SettingsManager.Get<JudgementCategory>().ScalePercentage / 100;
+        transform.localScale *= (float)SettingsManager.Get<Judgement>().ScalePercentage / 100;
     }
 }

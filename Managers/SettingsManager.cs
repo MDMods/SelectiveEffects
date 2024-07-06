@@ -65,13 +65,13 @@ internal static partial class SettingsManager
     private static void Init()
     {
         Init<MainCategory>();
-        Init<FeverCategory>();
-        Init<JudgementCategory>();
-        Init<HitCategory>();
-        Init<MusicHeartsCategory>();
-        Init<MiscCategory>();
-        Init<StageCategory>();
-        Init<GameSceneCategory>();
+        Init<Fever>();
+        Init<Judgement>();
+        Init<Hit>();
+        Init<MusicHearts>();
+        Init<Misc>();
+        Init<Stage>();
+        Init<GameScene>();
     }
 
     private static void Init<T>()

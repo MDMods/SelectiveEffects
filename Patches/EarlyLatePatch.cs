@@ -12,8 +12,8 @@ internal static class EarlyLatePatch
 {
     internal static void Postfix(JudgeDisplay __instance)
     {
-        var mainCategory = SettingsManager.Get<MainCategory>();
-        var judgementCategory = SettingsManager.Get<JudgementCategory>();
+        var mainCategory = SettingsManager.Get<Managers.MainCategory>();
+        var judgementCategory = SettingsManager.Get<Judgement>();
         if (
             !mainCategory.IsEnabled
             || mainCategory.DisableAllEffects

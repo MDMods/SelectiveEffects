@@ -13,8 +13,8 @@ internal static class DisappearAnimationPatch
 {
     internal static void Postfix(BaseEnemyObjectController __instance)
     {
-        var mainCategory = SettingsManager.Get<MainCategory>();
-        var hitCategory = SettingsManager.Get<HitCategory>();
+        var mainCategory = SettingsManager.Get<Managers.MainCategory>();
+        var hitCategory = SettingsManager.Get<Hit>();
         if (!mainCategory.IsEnabled)
             return;
 

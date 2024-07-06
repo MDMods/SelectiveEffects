@@ -2,14 +2,14 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class FeverCategory : Category
+internal class Fever : Category
 {
     private readonly MelonPreferences_Entry<bool> _disableBG;
     private readonly MelonPreferences_Entry<bool> _disableFever;
     private readonly MelonPreferences_Entry<bool> _disableStars;
     private readonly MelonPreferences_Entry<bool> _disableTransition;
 
-    public FeverCategory()
+    public Fever()
         : base("Fever")
     {
         _disableFever = _category.CreateEntry("DisableFever", false);

@@ -8,8 +8,7 @@ internal class DustFx : EffectsBaseCondition
 
     internal static DustFx Instance { get; } = new();
 
-    protected override bool SettingsValue =>
-        SettingsManager.Get<Managers.MiscCategory>().DisableDustFx;
+    protected override bool SettingsValue => SettingsManager.Get<Managers.Misc>().DisableDustFx;
 
     protected override bool Condition(string s)
     {

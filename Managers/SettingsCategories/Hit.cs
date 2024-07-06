@@ -2,7 +2,7 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class HitCategory : Category
+internal class Hit : Category
 {
     private readonly MelonPreferences_Entry<bool> _disableGirlAtkParticles;
     private readonly MelonPreferences_Entry<bool> _disableGirlFxAtk;
@@ -10,7 +10,7 @@ internal class HitCategory : Category
     private readonly MelonPreferences_Entry<bool> _disableHitEffects;
     private readonly MelonPreferences_Entry<bool> _disablePressFx;
 
-    public HitCategory()
+    public Hit()
         : base("Hit")
     {
         _disableHitDisappearAnimations = _category.CreateEntry(

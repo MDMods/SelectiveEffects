@@ -16,8 +16,8 @@ internal static class GameScenePatch
     internal static void ElfinNeonEggPostfix(NeonEggIncubationHandle __instance)
     {
         if (
-            !SettingsManager.Get<MainCategory>().IsEnabled
-            || !SettingsManager.Get<GameSceneCategory>().DisableElfin
+            !SettingsManager.Get<Managers.MainCategory>().IsEnabled
+            || !SettingsManager.Get<GameScene>().DisableElfin
         )
             return;
 
@@ -55,8 +55,8 @@ internal static class GameScenePatch
     internal static void ElfinPostfix(ElfinCreate __instance)
     {
         if (
-            !SettingsManager.Get<MainCategory>().IsEnabled
-            || !SettingsManager.Get<GameSceneCategory>().DisableElfin
+            !SettingsManager.Get<Managers.MainCategory>().IsEnabled
+            || !SettingsManager.Get<GameScene>().DisableElfin
         )
             return;
 
@@ -72,8 +72,8 @@ internal static class GameScenePatch
     internal static void GirlInitPostfix(GirlActionController __instance)
     {
         if (
-            !SettingsManager.Get<MainCategory>().IsEnabled
-            || !SettingsManager.Get<GameSceneCategory>().DisableGirl
+            !SettingsManager.Get<Managers.MainCategory>().IsEnabled
+            || !SettingsManager.Get<GameScene>().DisableGirl
         )
             return;
         var girlSk = __instance.go?.GetComponent<SkeletonAnimation>();
@@ -94,8 +94,8 @@ internal static class GameScenePatch
     internal static void GirlShadowPostfix(RoleBattleSubControl __instance)
     {
         if (
-            !SettingsManager.Get<MainCategory>().IsEnabled
-            || !SettingsManager.Get<GameSceneCategory>().DisableGirl
+            !SettingsManager.Get<Managers.MainCategory>().IsEnabled
+            || !SettingsManager.Get<GameScene>().DisableGirl
         )
             return;
 

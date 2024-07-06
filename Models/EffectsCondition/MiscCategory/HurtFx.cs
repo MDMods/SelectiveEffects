@@ -8,8 +8,7 @@ internal class HurtFx : EffectsBaseCondition
 
     internal static HurtFx Instance { get; } = new();
 
-    protected override bool SettingsValue =>
-        SettingsManager.Get<Managers.MiscCategory>().DisableHurtFx;
+    protected override bool SettingsValue => SettingsManager.Get<Managers.Misc>().DisableHurtFx;
 
     protected override bool Condition(string s)
     {

@@ -9,7 +9,7 @@ internal class MusicNotesText : EffectsBaseCondition
     internal static MusicNotesText Instance { get; } = new();
 
     protected override bool SettingsValue =>
-        SettingsManager.Get<Managers.MusicHeartsCategory>().DisableMusicNotesFx;
+        SettingsManager.Get<Managers.MusicHearts>().DisableMusicNotesFx;
 
     protected override bool Condition(string s)
     {

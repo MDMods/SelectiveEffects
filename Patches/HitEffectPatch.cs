@@ -10,8 +10,8 @@ internal static class HitEffectPatch
     internal static void Postfix(AttackEffectManager __instance)
     {
         if (
-            !SettingsManager.Get<MainCategory>().IsEnabled
-            || !SettingsManager.Get<HitCategory>().DisableHitEffects
+            !SettingsManager.Get<Managers.MainCategory>().IsEnabled
+            || !SettingsManager.Get<Hit>().DisableHitEffects
         )
             return;
 

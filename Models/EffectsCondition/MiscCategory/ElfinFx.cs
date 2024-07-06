@@ -8,8 +8,7 @@ internal class ElfinFx : EffectsBaseCondition
 
     internal static ElfinFx Instance { get; } = new();
 
-    protected override bool SettingsValue =>
-        SettingsManager.Get<Managers.MiscCategory>().DisableElfinFx;
+    protected override bool SettingsValue => SettingsManager.Get<Managers.Misc>().DisableElfinFx;
 
     protected override bool Condition(string s)
     {

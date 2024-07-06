@@ -11,10 +11,10 @@ internal static class StagePatch
 {
     internal static void Postfix()
     {
-        if (!SettingsManager.Get<MainCategory>().IsEnabled)
+        if (!SettingsManager.Get<Managers.MainCategory>().IsEnabled)
             return;
 
-        var stageCategory = SettingsManager.Get<StageCategory>();
+        var stageCategory = SettingsManager.Get<Stage>();
         if (!stageCategory.DisableStage)
             return;
 

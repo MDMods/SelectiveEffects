@@ -9,7 +9,7 @@ internal class HeartsFx : EffectsBaseCondition
     internal static HeartsFx Instance { get; } = new();
 
     protected override bool SettingsValue =>
-        SettingsManager.Get<Managers.MusicHeartsCategory>().DisableHeartsFx;
+        SettingsManager.Get<Managers.MusicHearts>().DisableHeartsFx;
 
     protected override bool Condition(string s)
     {

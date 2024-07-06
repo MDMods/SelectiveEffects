@@ -8,8 +8,7 @@ internal class PressFx : EffectsBaseCondition
 
     internal static PressFx Instance { get; } = new();
 
-    protected override bool SettingsValue =>
-        SettingsManager.Get<Managers.HitCategory>().DisablePressFx;
+    protected override bool SettingsValue => SettingsManager.Get<Managers.Hit>().DisablePressFx;
 
     protected override bool Condition(string s)
     {

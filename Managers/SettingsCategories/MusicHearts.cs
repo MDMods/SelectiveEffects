@@ -2,12 +2,12 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class MusicHeartsCategory : Category
+internal class MusicHearts : Category
 {
     private readonly MelonPreferences_Entry<bool> _disableHeartsFx;
     private readonly MelonPreferences_Entry<bool> _disableMusicNotesFx;
 
-    public MusicHeartsCategory()
+    public MusicHearts()
         : base("MusicHearts")
     {
         _disableMusicNotesFx = _category.CreateEntry(

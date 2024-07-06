@@ -12,7 +12,7 @@ internal class Greats : EffectsBaseCondition
     {
         get
         {
-            var judgementCategory = SettingsManager.Get<Managers.JudgementCategory>();
+            var judgementCategory = SettingsManager.Get<Managers.Judgement>();
             return judgementCategory.DisableGreats || judgementCategory.DisableJudgement;
         }
     }

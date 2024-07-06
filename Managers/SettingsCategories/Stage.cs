@@ -2,12 +2,12 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class StageCategory : Category
+internal class Stage : Category
 {
     private readonly MelonPreferences_Entry<bool> _disableStageBackground;
     private readonly MelonPreferences_Entry<bool> _disableStageExceptFloor;
 
-    public StageCategory()
+    public Stage()
         : base("Stage")
     {
         _disableStageBackground = _category.CreateEntry(

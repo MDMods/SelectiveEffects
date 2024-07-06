@@ -12,7 +12,7 @@ internal class Perfects : EffectsBaseCondition
     {
         get
         {
-            var judgementCategory = SettingsManager.Get<Managers.JudgementCategory>();
+            var judgementCategory = SettingsManager.Get<Managers.Judgement>();
             return judgementCategory.DisablePerfects || judgementCategory.DisableJudgement;
         }
     }

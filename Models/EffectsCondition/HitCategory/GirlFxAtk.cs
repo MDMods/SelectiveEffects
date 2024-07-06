@@ -13,7 +13,7 @@ internal class GirlFxAtk : EffectsBaseCondition
     {
         get
         {
-            var hitCategory = SettingsManager.Get<Managers.HitCategory>();
+            var hitCategory = SettingsManager.Get<Managers.Hit>();
             return hitCategory.DisableGirlFxAtk || hitCategory.DisableGirlAtkParticles;
         }
     }
@@ -25,7 +25,7 @@ internal class GirlFxAtk : EffectsBaseCondition
 
     protected override void FoundAction(GameObject go)
     {
-        if (SettingsManager.Get<Managers.HitCategory>().DisableGirlFxAtk)
+        if (SettingsManager.Get<Managers.Hit>().DisableGirlFxAtk)
         {
             base.FoundAction(go);
             return;

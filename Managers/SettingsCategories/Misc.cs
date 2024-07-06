@@ -2,14 +2,14 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class MiscCategory : Category
+internal class Misc : Category
 {
     private readonly MelonPreferences_Entry<bool> _disableBossFx;
     private readonly MelonPreferences_Entry<bool> _disableDustFx;
     private readonly MelonPreferences_Entry<bool> _disableElfinFx;
     private readonly MelonPreferences_Entry<bool> _disableHurtFx;
 
-    public MiscCategory()
+    public Misc()
         : base("Misc")
     {
         _disableBossFx = _category.CreateEntry("DisableBossFx", false);

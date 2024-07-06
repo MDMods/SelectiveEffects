@@ -11,7 +11,7 @@ internal class JudgementSize : EffectsBaseCondition
     internal static JudgementSize Instance { get; } = new();
 
     protected override bool SettingsValue =>
-        SettingsManager.Get<Managers.JudgementCategory>().MakeJudgementSmaller;
+        SettingsManager.Get<Managers.Judgement>().MakeJudgementSmaller;
 
     protected override bool Condition(string s)
     {

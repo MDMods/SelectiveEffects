@@ -13,7 +13,7 @@ internal static class MainEffectsPatch
     [HarmonyPostfix]
     internal static void CreateInstancePostfix(Effect __instance, ref GameObject __result)
     {
-        var mainCategory = SettingsManager.Get<MainCategory>();
+        var mainCategory = SettingsManager.Get<Managers.MainCategory>();
         if (!mainCategory.IsEnabled)
             return;
 
@@ -40,7 +40,7 @@ internal static class MainEffectsPatch
         if (!SceneInfo.IsGameScene)
             return;
 
-        if (SettingsManager.Get<MainCategory>().DisableAllEffects)
+        if (SettingsManager.Get<Managers.MainCategory>().DisableAllEffects)
             return;
 
         EffectsDisablerManager.DisableEffectsList.ForEach(effectObject =>

@@ -2,7 +2,7 @@
 
 namespace SelectiveEffects.Managers;
 
-internal class JudgementCategory : Category
+internal class Judgement : Category
 {
     private readonly MelonPreferences_Entry<bool> _disableGreats;
     private readonly MelonPreferences_Entry<bool> _disableJudgement;
@@ -12,7 +12,7 @@ internal class JudgementCategory : Category
     private readonly MelonPreferences_Entry<bool> _makeJudgementSmaller;
     private readonly MelonPreferences_Entry<int> _scalePercentage;
 
-    public JudgementCategory()
+    public Judgement()
         : base("Judgement")
     {
         _disableJudgement = _category.CreateEntry("DisableJudgement", false);
