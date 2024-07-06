@@ -11,6 +11,39 @@ namespace SelectiveEffects.Patches;
 [HarmonyPatch]
 internal static class GameScenePatch
 {
+    [HarmonyPatch(typeof(NeonEggIncubationHandle), nameof(NeonEggIncubationHandle.OnDestroy))]
+    [HarmonyPostfix]
+    internal static void ElfinNeonEggPostfix(NeonEggIncubationHandle __instance)
+    {
+        if (
+            !SettingsManager.Get<MainCategory>().IsEnabled
+            || !SettingsManager.Get<GameSceneCategory>().DisableElfin
+        )
+            return;
+
+        var go = __instance.gameObject.transform.parent;
+
+        // Search for the new elfin transform
+        Transform newElfin = null;
+        for (var i = 0; i < go.childCount; i++)
+        {
+            var child = go.GetChild(i);
+            if (!child.name.InvariantContains("egg"))
+            {
+                newElfin = child;
+                break;
+            }
+        }
+
+        if (newElfin == null)
+            return;
+
+        if (!newElfin.TryGetComponent(out SkeletonMecanim skMecanim))
+            return;
+
+        skMecanim.skeleton.a = 0;
+    }
+
     [HarmonyPatch(
         typeof(ElfinCreate),
         nameof(ElfinCreate.OnBattleStart),
@@ -31,8 +64,6 @@ internal static class GameScenePatch
         if (!skMechanism)
             return;
 
-        // ! Fix for neonEgg
-        // ? Check NeonEggIncubationHandle
         skMechanism.skeleton.a = 0;
     }
 
@@ -62,7 +93,6 @@ internal static class GameScenePatch
     [HarmonyPostfix]
     internal static void GirlShadowPostfix(RoleBattleSubControl __instance)
     {
-        // ! Fix this method
         if (
             !SettingsManager.Get<MainCategory>().IsEnabled
             || !SettingsManager.Get<GameSceneCategory>().DisableGirl
@@ -76,38 +106,5 @@ internal static class GameScenePatch
         if (!skAnim)
             return;
         skAnim.skeleton.a = 0;
-    }
-
-    [HarmonyPatch(typeof(NeonEggIncubationHandle), nameof(NeonEggIncubationHandle.OnDestroy))]
-    [HarmonyPostfix]
-    internal static void NeonEggPostfix(NeonEggIncubationHandle __instance)
-    {
-        if (
-            !SettingsManager.Get<MainCategory>().IsEnabled
-            || !SettingsManager.Get<GameSceneCategory>().DisableElfin
-        )
-            return;
-
-        var go = __instance.gameObject.transform.parent;
-
-        // Search for the new elfin transform
-        Transform newElfin = null;
-        for (var i = 0; i < go.childCount; i++)
-        {
-            var child = go.GetChild(i);
-            if (!child.name.InvariantContains("egg"))
-            {
-                newElfin = child;
-                break;
-            }
-        }
-
-        if (newElfin == null)
-            return;
-
-        if (!newElfin.TryGetComponent(out SkeletonMecanim skMecanim))
-            return;
-
-        skMecanim.skeleton.a = 0;
     }
 }
