@@ -66,7 +66,7 @@ internal static class StagePatch
     {
         var name = parent.name;
 
-        if (name.Contains("floor", StringComparison.InvariantCultureIgnoreCase))
+        if (name.InvariantContains("floor"))
         {
             return true;
         }
