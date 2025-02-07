@@ -1,11 +1,9 @@
-﻿using MuseDashMirror.Attributes;
-using SelectiveEffects.Models;
+﻿using SelectiveEffects.Models;
 using SelectiveEffects.Models.EffectsCondition.HitCategory;
 using SelectiveEffects.Models.EffectsCondition.JudgementCategory;
 using SelectiveEffects.Models.EffectsCondition.MiscCategory;
 using SelectiveEffects.Models.EffectsCondition.MusicHeartsCategory;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SelectiveEffects.Managers;
 
@@ -20,9 +18,6 @@ internal static partial class EffectsDisablerManager
 
     internal static List<EffectsBaseCondition> DisableEffectsList =>
         EffectsBaseCondition.DisableEffectsList;
-
-    //[PnlMenuToggle("EffectsToggleObject", "Disable Effects", nameof(SettingsManager.Get<MainCategory>().IsEnabled))]
-    //private static GameObject DisableEffectsToggle { get; set; }
 
     internal static Dictionary<string, Action<GameObject>> DisabledEffectsUids =>
         EffectsBaseCondition.DisabledEffectsUids;
@@ -56,17 +51,5 @@ internal static partial class EffectsDisablerManager
         ElfinFx.Instance.CheckAndAddInstance();
         DustFx.Instance.CheckAndAddInstance();
         HurtFx.Instance.CheckAndAddInstance();
-    }
-
-    internal static void ReloadToggle()
-    {
-        // if (!DisableEffectsToggle)
-        //     return;
-
-        // var toggleComp = DisableEffectsToggle.GetComponent<Toggle>();
-        // if (!toggleComp)
-        //     return;
-
-        // toggleComp.Set(SettingsManager.IsEnabled);
     }
 }

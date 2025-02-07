@@ -1,5 +1,4 @@
 ﻿using MelonLoader;
-using MuseDashMirror;
 using SelectiveEffects.Managers;
 using SelectiveEffects.Properties;
 
@@ -9,19 +8,8 @@ public sealed partial class Main : MelonMod
 {
     private static event Action ReloadEvent;
 
-    public override void OnInitializeMelon()
-    {
-        LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
-    }
-    
-    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
-    {
-        // Reload if needed outside of GameMain
-        if (SceneInfo.IsGameScene) return;
-        ReloadEvent?.Invoke();
-        ReloadEvent = null;
-    }
-    
+    public static bool IsGameScene { get; private set; } = false;
+
     // Reload if needed before quitting to save the current settings
     public override void OnApplicationQuit()
     {
@@ -30,15 +18,33 @@ public sealed partial class Main : MelonMod
         base.OnApplicationQuit();
     }
 
+    public override void OnInitializeMelon()
+    {
+        LoggerInstance.Msg($"{MelonBuildInfo.ModName} has loaded correctly!");
+    }
+
     // Late initialization of the file watcher
     public override void OnLateInitializeMelon()
     {
         SettingsManager.EnableWatcherEvents();
     }
 
+    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+    {
+        IsGameScene = sceneName?.Equals("GameMain") ?? false;
+        // Reload if needed outside of GameMain
+        if (IsGameScene)
+        {
+            return;
+        }
+
+        ReloadEvent?.Invoke();
+        ReloadEvent = null;
+    }
+
     internal static void QueueReload(object sender, FileSystemEventArgs e)
     {
-        if (!SceneInfo.IsGameScene)
+        if (!IsGameScene)
         {
             Reload();
             return;
@@ -51,7 +57,6 @@ public sealed partial class Main : MelonMod
     private static void Reload()
     {
         SettingsManager.Load();
-        EffectsDisablerManager.ReloadToggle();
         EffectsDisablerManager.Load();
 
         Melon<Main>.Logger.Msg("Reloaded successfully!");
