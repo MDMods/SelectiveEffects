@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Il2CppAssets.Scripts.UI.GameMain;
 using Il2CppAssets.Scripts.UI.Panels;
 using Il2CppGameLogic;
 using SelectiveEffects.Managers;
@@ -6,12 +7,14 @@ using UnityEngine;
 
 namespace SelectiveEffects.Patches;
 
-[HarmonyPatch(typeof(PnlBattle), nameof(PnlBattle.GameStart))]
+[HarmonyPatch]
 internal static class StagePatch
 {
-    internal static void Postfix()
+    [HarmonyPatch(typeof(PnlBattle), nameof(PnlBattle.GameStart))]
+    [HarmonyPostfix]
+    internal static void GameStartPostfix()
     {
-        if (!SettingsManager.Get<Managers.MainCategory>().IsEnabled)
+        if (!SettingsManager.Get<MainCategory>().IsEnabled)
             return;
 
         var stageCategory = SettingsManager.Get<Stage>();
@@ -58,6 +61,20 @@ internal static class StagePatch
 
             return;
         }
+    }
+
+    [HarmonyPatch(typeof(HitPointSubControl), nameof(HitPointSubControl.Awake))]
+    [HarmonyPostfix]
+    internal static void HitPostfix(HitPointSubControl __instance)
+    {
+        if (
+            !SettingsManager.Get<MainCategory>().IsEnabled
+            || !SettingsManager.Get<Stage>().DisableStageHitPoints
+        )
+        {
+            return;
+        }
+        __instance.gameObject.SetActive(false);
     }
 
     private static bool RecursiveFloor(GameObject parent) => RecursiveFloor(parent.transform);
