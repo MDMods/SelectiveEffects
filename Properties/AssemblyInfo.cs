@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using MelonLoader;
-using Main = SelectiveEffects.Main;
 using static SelectiveEffects.Properties.MelonBuildInfo;
+using Main = SelectiveEffects.Main;
 
 [assembly: MelonInfo(typeof(Main), ModName, ModVersion, Author)]
 [assembly: MelonGame("PeroPeroGames", "MuseDash")]

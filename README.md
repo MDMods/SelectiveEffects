@@ -38,13 +38,14 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 
 ### Judgement
 
-* `DisableJudgement` disables the judgements (including early/late).
+* `DisableJudgement` disables the judgments (including early/late).
 * `DisablePerfects` disables the perfect judgement.
 * `DisableGreats` disables the great judgement.
 * `DisablePass` disables the pass judgement.
-* `MakeJudgementSmaller` makes judgements smaller.
-* `JudgementScalePercentage` original judgement size percentage (0% &rarr; invisible judgements, 100% &rarr; original
-  size judgements).
+* `DisablePerfectPerfects` disables perfect judgement (non early non late).
+* `MakeJudgementSmaller` makes judgments smaller.
+* `JudgementScalePercentage` original judgement size percentage (0% &rarr; invisible judgments, 100% &rarr; original
+  size judgments).
 
 ### Hit
 
@@ -67,21 +68,24 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 * `DisableHurtFx` disables the text that appear when the character is hurt.
 * `DisableElfinFx` disables elfin effects.
 
-It is preferred to use the `DisableAllEfects` option instead of the individual options (this doesn't apply to the Fever
-effects since they are handled in a different way).
+### Stage
 
-## In-game screenshots
+* `DisableStageBackground` disables the stage background (Takes precedence over DisableStageExceptFloor).
+* `DisableStageExceptFloor` disables the stage background except the floor.
 
-### Menu Toggle
+### GameScene
 
-![MenuToggle](Media/MenuToggle.jpg)
+* `DisableGirl` disables the girl's sprite.
+* `DisableElfin` disables the elfin's sprite.
+
+> [!NOTE]
+> It is preferred to use the `DisableAllEffects` option instead of the individual options (this doesn't apply to the **Fever**, **Stage**, and **GameScene**  since they are handled in a different way).
 
 ## Installation
 
 ### Prerequisites
 
 * Make sure you have `MelonLoader 0.6.1` or higher installed and working on your Muse Dash.
-* [MuseDashMirror 3.1.3](https://github.com/MDMods/MuseDashMirror/releases/latest) or higher
 
 ### Steps
 
