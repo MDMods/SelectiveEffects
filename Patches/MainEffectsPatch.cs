@@ -36,7 +36,8 @@ internal static class MainEffectsPatch
     [HarmonyPostfix]
     internal static void InitPostfix(Effect __instance)
     {
-        if (Main.IsGameScene)
+        // We do not care about effects outside the chart
+        if (!Main.IsGameScene)
             return;
 
         if (SettingsManager.Get<Managers.MainCategory>().DisableAllEffects)
