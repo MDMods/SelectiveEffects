@@ -9,7 +9,6 @@ Mod that allows disabling battle effects.
 ## Features
 
 * Individual config options for several effects.
-* Enable/disable toggle at the menu.
 * Hot reload settings.
 
 ### Hot Reload
