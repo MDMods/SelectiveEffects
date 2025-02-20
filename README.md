@@ -1,5 +1,7 @@
 # SelectiveEffects
 
+[English](README.md) | [中文](README_zh.md)
+
 Mod that allows disabling battle effects.
 
 * **Please take a look at [installation](#installation)**.
