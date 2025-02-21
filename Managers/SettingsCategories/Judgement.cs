@@ -1,4 +1,5 @@
 ﻿using MelonLoader;
+using MelonLoader.Preferences;
 
 namespace SelectiveEffects.Managers;
 
@@ -28,7 +29,8 @@ internal class Judgement : Category
         _scalePercentage = _category.CreateEntry(
             "JudgementScalePercentage",
             75,
-            description: "Range from 0-100%"
+            description: "Range from 0-100%",
+            validator: new ValueRange<int>(0, 100)
         );
     }
 
@@ -42,16 +44,4 @@ internal class Judgement : Category
     internal bool DisablePerfects => _disablePerfects.Value;
     internal bool MakeJudgementSmaller => _makeJudgementSmaller.Value;
     internal int ScalePercentage => _scalePercentage.Value;
-
-    public override void Load()
-    {
-        base.Load();
-
-        // Verify scale is within range
-        var currentScale = ScalePercentage;
-        _scalePercentage.Value = Math.Clamp(ScalePercentage, 0, 100);
-        if (currentScale == ScalePercentage)
-            return;
-        Melon<Main>.Logger.Warning("JudgementScalePercentage is out of bounds!");
-    }
 }
