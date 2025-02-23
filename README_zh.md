@@ -78,7 +78,7 @@
 * `DisableGirl` 禁用角色的材质.
 * `DisableElfin` 禁用精灵的材质.
 
-> [!注意]
+> [!NOTE]
 > 我们更倾向于使用 `DisableAllEffects` 选项, 而不是单独的选项 (这并不适用于**Fever**, **Stage**, 和 **GameScene** , 因为他们的处理方式不同).
 
 ## 安装
