@@ -9,47 +9,46 @@ namespace SelectiveEffects.Patches;
 internal static class InterfacePatch
 {
     private static readonly Interface Interface = SettingsManager.Get<Interface>();
+    private static readonly MainCategory MainCategory = SettingsManager.Get<MainCategory>();
 
     private static void Prefix()
     {
+        if (!MainCategory.IsEnabled)
+            return;
+
         var pnlBattleOthers = GameObject.Find("PnlBattleOthers");
-        var up = pnlBattleOthers.transform.Find("Up");
+        var up = pnlBattleOthers?.transform.Find("Up");
 
         if (Interface.DisableHealthBar)
         {
-            var healthBar = pnlBattleOthers.transform.Find("Below").gameObject;
-            if (healthBar != null)
-                healthBar.SetActive(false);
+            var healthBar = pnlBattleOthers?.transform.Find("Below")?.gameObject;
+            healthBar?.SetActive(false);
         }
 
         if (Interface.DisableScore)
         {
-            var score = pnlBattleOthers.transform.Find("Score").gameObject;
-            if (score != null)
-                score.SetActive(false);
+            var score = pnlBattleOthers?.transform.Find("Score")?.gameObject;
+            score?.SetActive(false);
         }
 
         if (Interface.DisableCombo)
         {
             var combo = GameObject.Find("PnlCommonUI");
-            if (combo != null)
-                combo.SetActive(false);
+            combo?.SetActive(false);
 
             combo = GameObject.Find("PnlNewComboUI");
-            if (combo != null)
-                combo.SetActive(false);
+            combo?.SetActive(false);
         }
 
         if (Interface.DisablePauseButton)
         {
-            var pauseButton = up.Find("BtnPause").GetChild(0).gameObject;
-            if (pauseButton != null)
-                pauseButton.SetActive(false);
+            var pauseButton = up?.Find("BtnPause")?.GetChild(0)?.gameObject;
+            pauseButton?.SetActive(false);
         }
 
-        if (!Interface.DisableProgressBar) return;
-        var progressBar = up.Find("SldStageProgress").gameObject;
-        if (progressBar != null)
-            progressBar.SetActive(false);
+        if (!Interface.DisableProgressBar)
+            return;
+        var progressBar = up?.Find("SldStageProgress")?.gameObject;
+        progressBar?.SetActive(false);
     }
 }
