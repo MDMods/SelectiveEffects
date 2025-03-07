@@ -79,6 +79,14 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 * `DisableGirl` disables the girl's sprite.
 * `DisableElfin` disables the elfin's sprite.
 
+### Interface
+
+* `DisableHealthBar` disables the health & fever bar.
+* `DisableScore` disables the score counter.
+* `DisableCombo` disables the combo.
+* `DisablePauseButton` disables the pause button.
+* `DisableProgressBar` disables the progress bar.
+
 > [!NOTE]
 > It is preferred to use the `DisableAllEffects` option instead of the individual options (this doesn't apply to the **Fever**, **Stage**, and **GameScene**  since they are handled in a different way).
 
