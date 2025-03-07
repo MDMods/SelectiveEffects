@@ -72,6 +72,7 @@ internal static partial class SettingsManager
         Init<Misc>();
         Init<Stage>();
         Init<GameScene>();
+        Init<Interface>();
     }
 
     private static void Init<T>()
