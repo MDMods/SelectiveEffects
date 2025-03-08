@@ -32,51 +32,59 @@
 
 ### Fever
 
-* `DisableFever` 禁用 Fever 的背景和星星.
-* `DisableBackground` 禁用 Fever 的背景 (保留星星和结束过度). **如果只有这个Fever选项被启用, 那它完全像是 _BALLCOCK_ mod**.
-* `DisableStars` 禁用 Fever 的星星.
-* `DisableTransition` 禁用结束过渡. **与 `DisableBackground` 搭配会更好看**.
+* `DisableFever` 隐藏 Fever 的背景和星星.
+* `DisableBackground` 隐藏 Fever 的背景 (保留星星和结束过度). **如果只有这个Fever选项被启用, 那它完全像是 _BALLCOCK_ mod**.
+* `DisableStars` 隐藏 Fever 的星星.
+* `DisableTransition` 隐藏结束过渡。 **与 `DisableBackground` 搭配会更好看**.
 
 ### Judgement
 
-* `DisableJudgement` 禁用判定 (包含early和late).
-* `DisablePerfects` 禁用Perfect判定.
-* `DisableGreats` 禁用Great判定.
-* `DisablePass` 禁用Pass判定.
-* `DisablePerfectPerfects` 禁用完美Perfect判定 (没有early和late).
+* `DisableJudgement` 隐藏判定 (包含early和late).
+* `DisablePerfects` 隐藏Perfect判定.
+* `DisableGreats` 隐藏Great判定.
+* `DisablePass` 隐藏Pass判定.
+* `DisablePerfectPerfects` 隐藏完美Perfect判定 (没有early和late).
 * `MakeJudgementSmaller` 让判定变得更小.
 * `JudgementScalePercentage` 原始判定百分比大小 (0% &rarr; 直接看不见, 100% &rarr; 原始大小的判定).
 
 ### Hit
 
-* `DisableHitDisappearAnimation` 禁用敌人被击中时的动画，并使他们立即消失
-* `DisableHitEffects` 禁用命中效果和粒子.
+* `DisableHitDisappearAnimation` 隐藏敌人被击中时的动画，并使他们立即消失
+* `DisableHitEffects` 隐藏命中效果和粒子.
 * `DisableGirlHitFx` 与 `DisableHitEffects` 一样 , 但是不会使某些敌人的out_fx消失.
-* `DisableGirlHitParticlesOnly` 禁用命中时的星星粒子.
-* `DisablePressFx` 禁用当你按下hold时的粒子
+* `DisableGirlHitParticlesOnly` 隐藏命中时的星星粒子.
+* `DisablePressFx` 隐藏当你按下hold时的粒子
 
 ### MusicHearts
 
-* `DisableMusicNotesFx` 禁用触摸音符出现的粒子和文本.
-* `DisableHeartsFx` 禁用触摸爱心出现的粒子和文本.
+* `DisableMusicNotesFx` 隐藏触摸音符出现的粒子和文本.
+* `DisableHeartsFx` 隐藏触摸爱心出现的粒子和文本.
 
 ### Misc
 
-* `DisableBossFx` 禁用Boss在发射敌人时的一些效果.
-* `DisableDustFx` 禁用角色掉落到地面时的灰尘效果.
-* `DisableHurtFx` 禁用角色受伤时显示的文本.
-* `DisableElfinFx` 禁用精灵效果.
+* `DisableBossFx` 隐藏Boss在发射敌人时的一些效果.
+* `DisableDustFx` 隐藏角色掉落到地面时的灰尘效果.
+* `DisableHurtFx` 隐藏角色受伤时显示的文本.
+* `DisableElfinFx` 隐藏精灵效果.
 
 ### Stage
 
-* `DisableStageBackground` 禁用舞台背景 (优先于 DisableStageExceptFloor).
-* `DisableStageExceptFloor` 禁用除地板以外的舞台背景.
-* `DisableStageHitPoints` 禁用判定点.
+* `DisableStageBackground` 隐藏舞台背景 (优先于 `DisableStageExceptFloor` ).
+* `DisableStageExceptFloor` 隐藏除地板以外的舞台背景.
+* `DisableStageHitPoints` 隐藏判定点.
 
 ### GameScene
 
-* `DisableGirl` 禁用角色的材质.
-* `DisableElfin` 禁用精灵的材质.
+* `DisableGirl` 隐藏角色的材质.
+* `DisableElfin` 隐藏精灵的材质.
+
+### Interface
+
+* `DisableHealthBar` 隐藏血条和fever条
+* `DisableScore` 隐藏分数
+* `DisableCombo` 隐藏combo
+* `DisablePauseButton` 隐藏暂停按钮
+* `DisableProgressBar` 隐藏进度条
 
 > [!NOTE]
 > 我们更倾向于使用 `DisableAllEffects` 选项, 而不是单独的选项 (这并不适用于**Fever**, **Stage**, 和 **GameScene** , 因为他们的处理方式不同).
