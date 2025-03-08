@@ -73,6 +73,7 @@ The config file can be found at `${Your muse dash folder}/UserData/SelectiveEffe
 
 * `DisableStageBackground` disables the stage background (Takes precedence over DisableStageExceptFloor).
 * `DisableStageExceptFloor` disables the stage background except the floor.
+* `DisableStageHitPoints` disables the stage Hit Points
 
 ### GameScene
 
